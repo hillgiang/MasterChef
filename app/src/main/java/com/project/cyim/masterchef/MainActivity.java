@@ -4,10 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    SessionManagement session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +15,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void member(View view){
-        startActivity(new Intent(this, Login.class));
+        session = new SessionManagement(getApplicationContext());
+        if (session.isLoggedIn())
+            startActivity(new Intent(this, UsersInfo.class));
+        else
+            startActivity(new Intent(this, Login.class));
+    }
+
+    public void recipes(View view){
+        startActivity(new Intent(this, GetAllRecipes.class));
     }
 }

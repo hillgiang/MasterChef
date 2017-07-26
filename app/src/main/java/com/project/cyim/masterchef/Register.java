@@ -27,7 +27,7 @@ public class Register extends Activity{
         String password = passwordField.getText().toString();
         String fullname = nameField.getText().toString();
 
-        new LoginActivity(this).execute(username,password,fullname);
+        new LoginActivity(this, "reg").execute(username,password,fullname);
     }
 
     public void toLogin(View view){

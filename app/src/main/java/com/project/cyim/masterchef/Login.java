@@ -24,7 +24,7 @@ public class Login extends Activity{
     public void loginPost(View view){
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
-        new LoginActivity(this).execute(username,password);
+        new LoginActivity(this, "login").execute(username,password);
     }
 
     public void toRegister(View view){
