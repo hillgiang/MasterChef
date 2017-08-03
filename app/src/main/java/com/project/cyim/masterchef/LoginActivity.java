@@ -106,7 +106,7 @@ public class LoginActivity extends AsyncTask<String, String, String> {
                     sb.append(line);
                     break;
                 }
-
+                // 把伺服器回傳的東西存進sb變數裡
                 return sb.toString();
             } catch (Exception e) {
                 return new String("Exception: " + e.getMessage());
@@ -116,7 +116,7 @@ public class LoginActivity extends AsyncTask<String, String, String> {
     }
 
     @Override
-    protected void onPostExecute(String result){
+    protected void onPostExecute(String result){ // result變數是從上面doInBackground函數回傳的
         session = new SessionManagement(context);
         if ( result.equals("Login") ) {
             Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show();
@@ -125,7 +125,9 @@ public class LoginActivity extends AsyncTask<String, String, String> {
         }
         else if ( result.equals("") )
             Toast.makeText(context, "Username or Password incorrect!", Toast.LENGTH_SHORT).show();
-        else
+        else {
             Toast.makeText(context, "Register Successful!", Toast.LENGTH_SHORT).show();
+            context.startActivity(new Intent(context, Login.class));
+        }
     }
 }

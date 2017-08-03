@@ -10,4 +10,22 @@
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Fullname</string>
+    <string name="search_hint">Search for recipes</string>
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_home">Recipes</string>
+    <string name="nav_classification">Classification</string>
+    <string name="nav_fridge">My Fridge</string>
+    <string name="nav_notifications">Notifications</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_about_us">About Us</string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>Recipes</item>
+        <item>Classification</item>
+        <item>My Fridge</item>
+        <item>Notifications</item>
+        <item>Settings</item>
+    </string-array>
 </resources>

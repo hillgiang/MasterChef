@@ -28,7 +28,10 @@ public class UsersInfo extends Activity {
         HashMap<String, String> user = session.getUserDetails();
         String email = user.get(SessionManagement.KEY_EMAIL);
         textview.setText(email);
-
+        //所以現在email變數所存的就是賬號。
+        //再把賬號名稱傳給GetMemberInfo.php。
+        //最後，伺服器會回傳使用者資料。
+        //把那些資料在UI上顯示出來(set TextView)。
 
 
         logout.setOnClickListener(new View.OnClickListener() {

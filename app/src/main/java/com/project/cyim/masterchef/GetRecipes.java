@@ -5,11 +5,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ListView;
 
 /**
  * Created by Hillary on 7/19/2017.
@@ -17,10 +19,17 @@ import android.widget.Toast;
 
 public class GetRecipes extends AsyncTask<String, String, String> {
     private Context context;
-    private TextView recipes;
+    private ListView list;
+    private LazyAdapter adapter;
+    private Activity a;
+    public ArrayList<HashMap<String, String>> recipes;
+    static final String KEY_ID = "id";
+    static final String KEY_TITLE = "title";
+    static final String KEY_AUTHOR = "author";
 
-    public GetRecipes(Context context, TextView recipes) {
-        this.recipes = recipes;
+    public GetRecipes(Context context, ListView list, Activity a) {
+        this.a = a;
+        this.list = list;
         this.context = context;
     }
 
@@ -62,6 +71,18 @@ public class GetRecipes extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String result){
-        this.recipes.setText(result);
+        recipes = new ArrayList<HashMap<String, String>>();
+        for (String i: result.split("/")) {
+            if ( !i.isEmpty() ) {
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put(KEY_ID, i.split(",")[0]);
+                map.put(KEY_TITLE, i.split(",")[4]);
+
+                recipes.add(map);
+            }
+        }
+
+        adapter=new LazyAdapter(a, recipes);
+        list.setAdapter(adapter);
     }
 }

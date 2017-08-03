@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.widget.Toast;
 
 public class SessionManagement {
     // Shared Preferences
@@ -92,10 +91,6 @@ public class SessionManagement {
 
         // return user
         return user;
-    }
-
-    public void userdata(){
-        Toast.makeText(_context, pref.getString(KEY_EMAIL, null), Toast.LENGTH_SHORT).show();
     }
 
     /**
