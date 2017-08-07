@@ -21,25 +21,9 @@
         </activity>
         <activity android:name=".Login"/>
         <activity android:name=".Register"/>
-        <activity android:name=".UsersInfo"/>
         <activity
-            android:name=".GetAllRecipes"
-            android:theme="@style/Theme.MyCompatTheme">
-            <meta-data
-                android:name="android.app.default_searchable"
-                android:value=".SearchResultsActivity" />
-        </activity>
-        <activity
-            android:name=".SearchResultsActivity"
-            android:theme="@style/Theme.MyCompatTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
+            android:name=".UserMore"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

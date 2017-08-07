@@ -1,29 +1,44 @@
 package com.project.cyim.masterchef;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
-import java.util.HashMap;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Button;
+import java.util.HashMap;
+import android.content.Intent;
 
 /**
  * Created by Hillary on 7/26/2017.
  */
 
-public class UsersInfo extends Activity {
+public class UsersInfo extends Fragment {
     private TextView textview;
-    private Button logout;
     SessionManagement session;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.users_info);
-        session = new SessionManagement(getApplicationContext());
+    public static UsersInfo newInstance() {
+        UsersInfo fragment = new UsersInfo();
+        return fragment;
+    }
 
-        textview = (TextView) findViewById(R.id.textView);
-        logout = (Button) findViewById(R.id.logout);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.users_info, container, false);
+        session = new SessionManagement(getActivity());
+
+        textview = (TextView) v.findViewById(R.id.textView);
 
         HashMap<String, String> user = session.getUserDetails();
         String email = user.get(SessionManagement.KEY_EMAIL);
@@ -33,16 +48,23 @@ public class UsersInfo extends Activity {
         //最後，伺服器會回傳使用者資料。
         //把那些資料在UI上顯示出來(set TextView)。
 
+        return v;
+    }
 
-        logout.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_user, menu);
+    }
 
-            @Override
-            public void onClick(View arg0) {
-                // Clear the session data
-                // This will clear all session data and
-                // redirect user to LoginActivity
-                session.logoutUser();
-            }
-        });
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_more:
+                startActivity(new Intent(getActivity(), UserMore.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

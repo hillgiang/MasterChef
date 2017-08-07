@@ -8,10 +8,11 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 
 /**
  * Created by Hillary on 7/19/2017.
@@ -19,18 +20,18 @@ import android.widget.ListView;
 
 public class GetRecipes extends AsyncTask<String, String, String> {
     private Context context;
-    private ListView list;
-    private LazyAdapter adapter;
-    private Activity a;
     public ArrayList<HashMap<String, String>> recipes;
     static final String KEY_ID = "id";
     static final String KEY_TITLE = "title";
     static final String KEY_AUTHOR = "author";
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager RecyclerViewLayoutManager;
+    RecyclerViewAdapter RecyclerViewHorizontalAdapter;
+    LinearLayoutManager HorizontalLayout ;
 
-    public GetRecipes(Context context, ListView list, Activity a) {
-        this.a = a;
-        this.list = list;
+    public GetRecipes(Context context, RecyclerView recyclerView) {
         this.context = context;
+        this.recyclerView = recyclerView;
     }
 
     protected void onPreExecute(){
@@ -82,7 +83,14 @@ public class GetRecipes extends AsyncTask<String, String, String> {
             }
         }
 
-        adapter=new LazyAdapter(a, recipes);
-        list.setAdapter(adapter);
+        RecyclerViewLayoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(RecyclerViewLayoutManager);
+
+        RecyclerViewHorizontalAdapter = new RecyclerViewAdapter(recipes);
+
+        HorizontalLayout = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(HorizontalLayout);
+
+        recyclerView.setAdapter(RecyclerViewHorizontalAdapter);
     }
 }

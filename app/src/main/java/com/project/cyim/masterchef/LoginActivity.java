@@ -121,7 +121,6 @@ public class LoginActivity extends AsyncTask<String, String, String> {
         if ( result.equals("Login") ) {
             Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show();
             session.createLoginSession(name);
-            context.startActivity(new Intent(context, UsersInfo.class));
         }
         else if ( result.equals("") )
             Toast.makeText(context, "Username or Password incorrect!", Toast.LENGTH_SHORT).show();
