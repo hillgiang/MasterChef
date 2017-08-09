@@ -14,6 +14,7 @@
     <string name="action_write">New Recipes</string>
     <string name="action_more">More</string>
     <string name="cart">Cart</string>
+    <string name="edit">編輯個人資訊</string>
 
     <string name="tab_home">Home</string>
     <string name="tab_search">Search</string>

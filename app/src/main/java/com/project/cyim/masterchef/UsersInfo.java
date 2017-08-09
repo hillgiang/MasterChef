@@ -1,7 +1,11 @@
 package com.project.cyim.masterchef;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Button;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import android.content.Intent;
 
@@ -18,6 +24,8 @@ import android.content.Intent;
  */
 
 public class UsersInfo extends Fragment {
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
     private TextView textview;
     SessionManagement session;
 
@@ -36,6 +44,13 @@ public class UsersInfo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.users_info, container, false);
+        // tab
+        viewPager = (ViewPager) v.findViewById(R.id.pager);
+        setupViewPager(viewPager);
+        tabLayout = (TabLayout) v.findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+
         session = new SessionManagement(getActivity());
 
         textview = (TextView) v.findViewById(R.id.textView);
@@ -49,6 +64,39 @@ public class UsersInfo extends Fragment {
         //把那些資料在UI上顯示出來(set TextView)。
 
         return v;
+    }
+    // tab
+    private void setupViewPager(ViewPager viewPager) {
+        UsersInfo.ViewPagerAdapter adapter = new UsersInfo.ViewPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(new UserFragment1(), "我的冰箱");
+        adapter.addFragment(new UserFragment2(), "我的食譜");
+        adapter.addFragment(new UserFragment3(), "我的朋友");
+        viewPager.setAdapter(adapter);
+    }
+    // tab
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 
     @Override
