@@ -3,40 +3,42 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="5dip" >
+        android:padding="5dip">
 
         <!--  ListRow Left sied Thumbnail image -->
-        <LinearLayout android:id="@+id/thumbnail"
+        <LinearLayout
+            android:id="@+id/thumbnail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dip"
             android:layout_alignParentLeft="true"
-            android:layout_marginRight="5dip">
+            android:layout_marginRight="5dip"
+            android:padding="10dip">
 
             <ImageView
                 android:id="@+id/list_image"
                 android:layout_width="150dip"
                 android:layout_height="150dip"
-                android:src="@drawable/foods"/>
+                android:src="@drawable/foods" />
 
         </LinearLayout>
 
         <!-- Title -->
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/thumbnail"
             android:layout_toRightOf="@+id/thumbnail"
-            android:text="Name"
-            android:textColor="@color/bg_login"
-            android:typeface="sans"
-            android:textSize="15dip"
-            android:textStyle="bold"/>
+            android:padding="10dip"
+            android:text="陳美美"
+            android:textColor="@color/bg_main"
+            android:textSize="20dip"
+            android:textStyle="bold"
+            android:typeface="sans" />
 
         <!-- Author -->
         <TextView
@@ -44,11 +46,38 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textView"
-            android:textColor="@color/bg_main"
-            android:textSize="10dip"
             android:layout_marginTop="1dip"
             android:layout_toRightOf="@+id/thumbnail"
-            android:text="Email" />
+            android:padding="5dip"
+            android:text="小美~美美的~"
+            android:textColor="@color/bg_main"
+            android:textSize="16dip" />
+
+        <TextView
+            android:id="@+id/author2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/author"
+            android:layout_marginTop="1dip"
+            android:layout_toRightOf="@+id/thumbnail"
+            android:padding="8dip"
+            android:text="美食專家就是我XD"
+            android:textColor="@color/bg_main"
+            android:textSize="16dip" />
+
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/author2"
+            android:layout_marginTop="2dip"
+            android:layout_toEndOf="@+id/thumbnail"
+            android:background="@color/btn_login_bg"
+            android:padding="15dip"
+            android:text="@string/edit"
+            android:textColor="@color/bg_register"
+            android:textSize="16dip" />
+
 
     </RelativeLayout>
 
