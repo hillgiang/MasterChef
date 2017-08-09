@@ -2,14 +2,14 @@
     <string name="app_name">MasterChef</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="hint_name">Fullname</string>
+    <string name="hint_name">Full Name</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_register">REGISTER</string>
     <string name="btn_link_to_register">Not a member? Sign up now.</string>
-    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="btn_link_to_login">Already registered! Login Me.</string>
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
-    <string name="name">Fullname</string>
+    <string name="name">Full Name</string>
     <string name="search_hint">Search for recipes</string>
     <string name="action_write">New Recipes</string>
     <string name="action_more">More</string>
@@ -19,4 +19,8 @@
     <string name="tab_search">Search</string>
     <string name="tab_fav">Favorites</string>
     <string name="tab_member">Member Info</string>
+
+    <string name="logout_text">Log Out</string>
+    <string name="language_text">Language</string>
+    <string name="aboutus_text">About Us</string>
 </resources>
