@@ -13,18 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Begin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"/>
         <activity android:name=".Login"/>
         <activity android:name=".Register"/>
-        <activity
-            android:name=".UserMore"
-            android:parentActivityName=".MainActivity"/>
-
+        <activity android:name=".UserMore"/>
+        <activity android:name=".Food"/>
+>>>>>>> f50558dba1eed531eb07eeacef1e007a15bfd075
     </application>
 
 </manifest>

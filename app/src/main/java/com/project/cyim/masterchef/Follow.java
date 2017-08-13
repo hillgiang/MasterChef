@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 /**
  * Created by user on 2017/8/8.
  */
-public class UserFragment1 extends Fragment {
-    public UserFragment1() {
+public class Follow extends Fragment {
+    public Follow() {
         // Required empty public constructor
     }
 
@@ -23,6 +23,6 @@ public class UserFragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.userfragment_one, container, false);
+        return inflater.inflate(R.layout.follow, container, false);
     }
 }

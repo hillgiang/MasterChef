@@ -7,10 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by user on 2017/8/8.
+ * Created by yu fen on 2017/8/10.
  */
-public class UserFragment3 extends Fragment {
-    public UserFragment3() {
+
+public class DiscuFrag extends Fragment{
+    public DiscuFrag() {
         // Required empty public constructor
     }
 
@@ -23,6 +24,6 @@ public class UserFragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.userfragment_three, container, false);
+        return inflater.inflate(R.layout.frag_discu, container, false);
     }
 }
