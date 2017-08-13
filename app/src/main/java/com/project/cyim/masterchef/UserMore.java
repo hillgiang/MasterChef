@@ -1,5 +1,8 @@
 package com.project.cyim.masterchef;
 
+import android.content.DialogInterface;
+import android.content.res.Configuration;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +12,8 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 /**
  * Created by Hillary on 8/6/2017.
  */
@@ -17,6 +22,8 @@ public class UserMore extends AppCompatActivity {
     String[] moreArray = new String[3];
     private ListView listView;
     SessionManagement session;
+    AlertDialog levelDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,7 @@ public class UserMore extends AppCompatActivity {
         moreArray[2] = getString(R.string.logout_text);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.option));
         session = new SessionManagement(getApplicationContext());
 
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.usermore_list, moreArray);
@@ -37,9 +45,9 @@ public class UserMore extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = ((TextView)view).getText().toString();
-                if (item.equals(getString(R.string.language_text))) {
-
-                } else if (item.equals(getString(R.string.aboutus_text))) {
+                if (item.equals(getString(R.string.language_text)))
+                    showRadioButtonDialog();
+                else if (item.equals(getString(R.string.aboutus_text))) {
 
                 } else if (item.equals(getString(R.string.logout_text)))
                     session.logoutUser();
@@ -58,5 +66,35 @@ public class UserMore extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showRadioButtonDialog() {
+
+        // custom dialog
+        final CharSequence[] items = {getString(R.string.chinese), getString(R.string.english)};
+
+        // Creating and Building the Dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.select_language));
+        builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                Configuration config = new Configuration();
+                Locale locale;
+                switch(item)
+                {
+                    case 0:
+                        locale = new Locale("zh-rTW");
+                        config.locale =locale;
+                        break;
+                    case 1:
+                        config.locale = Locale.ENGLISH;
+                        break;
+                }
+                getResources().updateConfiguration(config, null);
+                levelDialog.dismiss();
+            }
+        });
+        levelDialog = builder.create();
+        levelDialog.show();
     }
 }

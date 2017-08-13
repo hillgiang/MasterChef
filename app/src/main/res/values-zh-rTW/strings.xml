@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">廚神當道</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">密碼</string>
+    <string name="hint_name">姓名</string>
+    <string name="btn_login">登入</string>
+    <string name="btn_register">註冊</string>
+    <string name="btn_link_to_register">還沒註冊？請馬上註冊！</string>
+    <string name="btn_link_to_login">已經註冊了？請登入！</string>
+    <string name="welcome">Welcome</string>
+    <string name="name">姓名</string>
+    <string name="search_hint">食譜搜尋</string>
+    <string name="action_write">新增食譜</string>
+    <string name="action_more">更多</string>
+    <string name="cart">購物車</string>
+    <string name="edit">編輯你的資訊</string>
+    <string name="option">設定</string>
+    <string name="ididit">跟著做</string>
+
+    <string name="tab_home">逛食譜</string>
+    <string name="tab_search">搜尋</string>
+    <string name="tab_fav">收藏</string>
+    <string name="tab_member">會員管理</string>
+
+    <string name="myfridge">我的冰箱</string>
+    <string name="myrecipes">我的食譜</string>
+    <string name="follow">追蹤</string>
+
+    <string name="logout_text">登出</string>
+    <string name="language_text">語言</string>
+    <string name="aboutus_text">關於我們</string>
+
+    <string name="select_language">語言選擇</string>
+    <string name="chinese">中文</string>
+    <string name="english">英文</string>
+
+    <string name="intro">簡介</string>
+    <string name="ingredient">食材</string>
+    <string name="step">步驟</string>
+    <string name="discuss">討論</string>
+</resources>
