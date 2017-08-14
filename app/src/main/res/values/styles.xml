@@ -19,6 +19,11 @@
         <item name="background">@color/background</item>
     </style>
 
+    <style name="MoreButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/input_register</item>
+        <item name="colorButtonNormal">@color/input_register_bg</item>
+    </style>
+
     <color name="background">#f76d3c</color>
 
 </resources>

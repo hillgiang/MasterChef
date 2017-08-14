@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/fav"
+        icon="@drawable/ic_action_fav"
+        title="@string/tab_fav"
+        activeColor="@color/colorAccent" />
+    <tab
+        id="@+id/pic"
+        icon="@drawable/ic_action_camera"
+        title="@string/ididit"
+        activeColor="@color/colorAccent" />
+</tabs>

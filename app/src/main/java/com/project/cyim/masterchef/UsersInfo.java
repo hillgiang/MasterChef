@@ -79,9 +79,9 @@ public class UsersInfo extends Fragment {
     // tab
     private void setupViewPager(ViewPager viewPager) {
         UsersInfo.ViewPagerAdapter adapter = new UsersInfo.ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new UserFragment1(), "我的冰箱");
-        adapter.addFragment(new UserFragment2(), "我的食譜");
-        adapter.addFragment(new UserFragment3(), "我的朋友");
+        adapter.addFragment(new MyFridge(), getString(R.string.myfridge));
+        adapter.addFragment(new MyRecipes(), getString(R.string.myrecipes));
+        adapter.addFragment(new Follow(), getString(R.string.follow));
         viewPager.setAdapter(adapter);
     }
     // tab
