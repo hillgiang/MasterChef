@@ -11,10 +11,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Button;
 import java.util.ArrayList;
+import android.app.Activity;
 import java.util.List;
 import java.util.HashMap;
 import android.content.Intent;
@@ -27,6 +28,7 @@ public class UsersInfo extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TextView textview;
+    private TextView fullname;
     SessionManagement session;
 
     public static UsersInfo newInstance() {
@@ -54,16 +56,25 @@ public class UsersInfo extends Fragment {
         session = new SessionManagement(getActivity());
 
         textview = (TextView) v.findViewById(R.id.textView);
+        fullname = (TextView) v.findViewById(R.id.author);
+
 
         HashMap<String, String> user = session.getUserDetails();
         String email = user.get(SessionManagement.KEY_EMAIL);
         textview.setText(email);
+
+        new GetUserInfo(this, fullname).execute(email);
+
         //所以現在email變數所存的就是賬號。
         //再把賬號名稱傳給GetMemberInfo.php。
         //最後，伺服器會回傳使用者資料。
         //把那些資料在UI上顯示出來(set TextView)。
 
+
         return v;
+    }
+    public void Edit(View view){
+        startActivity(new Intent(this, Edituser.class));
     }
     // tab
     private void setupViewPager(ViewPager viewPager) {
@@ -115,4 +126,5 @@ public class UsersInfo extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

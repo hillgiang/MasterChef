@@ -53,30 +53,21 @@
             android:textColor="@color/bg_main"
             android:textSize="16dip" />
 
-        <TextView
-            android:id="@+id/author2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/author"
-            android:layout_marginTop="1dip"
-            android:layout_toRightOf="@+id/thumbnail"
-            android:padding="8dip"
-            android:text="美食專家就是我XD"
-            android:textColor="@color/bg_main"
-            android:textSize="16dip" />
 
         <Button
             android:id="@+id/edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/author2"
-            android:layout_marginTop="2dip"
-            android:layout_toEndOf="@+id/thumbnail"
             android:background="@color/btn_login_bg"
             android:padding="15dip"
             android:text="@string/edit"
             android:textColor="@color/bg_register"
-            android:textSize="16dip" />
+            android:textSize="16dip"
+            android:layout_marginStart="12dp"
+            android:layout_below="@+id/author"
+            android:layout_toEndOf="@+id/thumbnail"
+            android:layout_marginTop="13dp"
+            android:onClick="Edit"/>
 
 
     </RelativeLayout>
