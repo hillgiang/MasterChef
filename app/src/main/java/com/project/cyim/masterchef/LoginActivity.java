@@ -118,16 +118,15 @@ public class LoginActivity extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String result){ // result變數是從上面doInBackground函數回傳的
         session = new SessionManagement(context);
-        if ( result.equals("Login") ) {
-            Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show();
-            session.createLoginSession(name);
-            context.startActivity(new Intent(context, MainActivity.class));
-        }
-        else if ( result.equals("") )
+        if ( result.equals("Error") )
             Toast.makeText(context, "Username or Password incorrect!", Toast.LENGTH_SHORT).show();
-        else {
+        else if ( result.equals("RegSuccess") ) {
             Toast.makeText(context, "Register Successful!", Toast.LENGTH_SHORT).show();
             context.startActivity(new Intent(context, Login.class));
+        } else {
+            Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show();
+            session.createLoginSession(name, result);
+            context.startActivity(new Intent(context, MainActivity.class));
         }
     }
 }

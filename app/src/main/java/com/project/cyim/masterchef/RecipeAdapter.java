@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,7 +74,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         id = Integer.parseInt(recipe.get(GetRecipes.KEY_ID));
 
         // loading album cover using Glide library
-        Glide.with(mContext).load(Integer.parseInt(recipe.get(GetRecipes.KEY_THUMBNAIL))).into(holder.thumbnail);
+        Glide.with(mContext)
+                .load(recipe.get(GetRecipes.KEY_THUMBNAIL))
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.thumbnail);
 
         /*
         holder.overflow.setOnClickListener(new View.OnClickListener() {
