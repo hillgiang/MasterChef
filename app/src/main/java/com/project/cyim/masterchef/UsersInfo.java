@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Button;
 import java.util.ArrayList;
 import android.app.Activity;
 import java.util.List;
@@ -29,6 +30,7 @@ public class UsersInfo extends Fragment {
     private ViewPager viewPager;
     private TextView textview;
     private TextView fullname;
+    private Button button01;
     SessionManagement session;
 
     public static UsersInfo newInstance() {
@@ -57,6 +59,14 @@ public class UsersInfo extends Fragment {
 
         textview = (TextView) v.findViewById(R.id.textView);
         fullname = (TextView) v.findViewById(R.id.author);
+        button01 = (Button) v.findViewById(R.id.edit);
+
+        button01.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), Edituser.class);
+                startActivity(intent);
+            }
+        });
 
 
         HashMap<String, String> user = session.getUserDetails();
@@ -69,13 +79,10 @@ public class UsersInfo extends Fragment {
         //再把賬號名稱傳給GetMemberInfo.php。
         //最後，伺服器會回傳使用者資料。
         //把那些資料在UI上顯示出來(set TextView)。
-
-
         return v;
+
     }
-    public void Edit(View view){
-        startActivity(new Intent(this, Edituser.class));
-    }
+
     // tab
     private void setupViewPager(ViewPager viewPager) {
         UsersInfo.ViewPagerAdapter adapter = new UsersInfo.ViewPagerAdapter(getChildFragmentManager());
@@ -126,5 +133,6 @@ public class UsersInfo extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
 }

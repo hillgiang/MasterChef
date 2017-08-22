@@ -67,10 +67,7 @@
             android:layout_marginStart="12dp"
             android:layout_below="@+id/author"
             android:layout_toEndOf="@+id/thumbnail"
-            android:layout_marginTop="13dp"
-            android:onClick="Edit"/>
-
-
+            android:layout_marginTop="13dp"/>
     </RelativeLayout>
 
     <LinearLayout

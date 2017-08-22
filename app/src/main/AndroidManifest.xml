@@ -22,9 +22,10 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".Login"/>
         <activity android:name=".Register"/>
+        <activity android:name=".Edituser"/>
         <activity android:name=".UserMore"/>
         <activity android:name=".Food"/>
->>>>>>> f50558dba1eed531eb07eeacef1e007a15bfd075
+        >>>>>>> f50558dba1eed531eb07eeacef1e007a15bfd075
     </application>
 
 </manifest>
