@@ -30,7 +30,7 @@ public class SessionManagement {
     private static final String IS_LOGIN = "IsLoggedIn";
 
     // User name (make variable public to access from outside)
-    public static final String KEY_NAME = "name";
+    public static final String KEY_ID = "id";
 
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
@@ -45,13 +45,13 @@ public class SessionManagement {
     /**
      * Create login session
      * */
-    public void createLoginSession(String email){
+    public void createLoginSession(String email, String id){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
         // Storing email in pref
         editor.putString(KEY_EMAIL, email);
-
+        editor.putString(KEY_ID, id);
         // commit changes
         editor.commit();
     }

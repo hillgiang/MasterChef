@@ -3,8 +3,7 @@
     package="com.project.cyim.masterchef">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -22,10 +21,9 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".Login"/>
         <activity android:name=".Register"/>
-        <activity android:name=".Edituser"/>
         <activity android:name=".UserMore"/>
         <activity android:name=".Food"/>
-        >>>>>>> f50558dba1eed531eb07eeacef1e007a15bfd075
+        <activity android:name=".ImageUpload"/>
     </application>
 
 </manifest>

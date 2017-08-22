@@ -12,6 +12,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -99,14 +100,17 @@ public class GetRecipes extends AsyncTask<String, String, String> {
 
                 String id = c.getString("recipes_id");
                 String title = c.getString("recipes_name");
-
+                String thumbnail = c.getString("thumbnail");
+                if (thumbnail.equals(""))
+                    thumbnail = R.drawable.foods + "";
                 // tmp hash map for single contact
+                thumbnail = "http://" + thumbnail;
                 HashMap<String, String> reci2 = new HashMap<>();
 
                 // adding each child node to HashMap key => value
                 reci2.put(KEY_ID, id);
                 reci2.put(KEY_TITLE, title);
-                reci2.put(KEY_THUMBNAIL, R.drawable.foods + "");
+                reci2.put(KEY_THUMBNAIL, thumbnail);
 
                 // adding contact to contact list
                 recipes.add(reci2);

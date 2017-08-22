@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,8 +23,10 @@ import java.util.ArrayList;
 
 /**
  * Created by user on 2017/8/8.
+ * 我的冰箱
  */
 public class MyFridge extends Fragment {
+    TextView item;
     public MyFridge() {
         // Required empty public constructor
     }
@@ -37,7 +40,10 @@ public class MyFridge extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.my_fridge, container, false);
+        View v = inflater.inflate(R.layout.my_fridge, container, false);
+        item = (TextView) v.findViewById(R.id.item);
+        new FridgeData(getContext()).execute();
+        return v;
     }
 
 
@@ -45,7 +51,7 @@ public class MyFridge extends Fragment {
         private Context context;
         SessionManagement session;
 
-        public FridgeData(Context context, String task) {
+        public FridgeData(Context context) {
             this.context = context;
         }
 
@@ -55,13 +61,13 @@ public class MyFridge extends Fragment {
         @Override
         protected String doInBackground(String... arg0) {
             try {
-                String username = (String) arg0[0];
-                String password = (String) arg0[1];
+                //String username = (String) arg0[0];
+                //String password = (String) arg0[1];
 
                 String ip = "http://140.135.113.99";
                 String link = ip + "/loginpost.php";
                 String data = URLEncoder.encode("username", "UTF-8") + "=" +
-                        URLEncoder.encode(username, "UTF-8");
+                        URLEncoder.encode("", "UTF-8");
 
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();
@@ -93,13 +99,13 @@ public class MyFridge extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             try {
-                ArrayList<String> ingredient = new ArrayList<String>();
+                //ArrayList<String> ingredient = new ArrayList<String>();
                 JSONArray reci = new JSONArray(result);
                 for (int i = 0; i < reci.length(); i++) {
                     JSONObject c = reci.getJSONObject(i);
 
-                    String item = c.getString("ingredient");
-                    ingredient.add(item);
+                    String item = c.getString("fridge_ingredient");
+                    //ingredient.add(item);
                 }
             } catch (final JSONException e) {
             }
