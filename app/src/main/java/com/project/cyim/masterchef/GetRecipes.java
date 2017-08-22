@@ -87,7 +87,7 @@ public class GetRecipes extends AsyncTask<String, String, String> {
             if ( !i.isEmpty() ) {
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put(KEY_ID, i.split(",")[0]);
-                map.put(KEY_TITLE, i.split(",")[4]);
+      //          map.put(KEY_TITLE, i.split(",")[4]);
 
                 recipes.add(map);
             }
