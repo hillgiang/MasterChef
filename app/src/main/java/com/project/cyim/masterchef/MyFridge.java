@@ -114,9 +114,7 @@ public class MyFridge extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             ArrayList<String> list = new ArrayList<String>();
-            ArrayAdapter<String> adapter =
-                    new ArrayAdapter<String>(getActivity(),
-                            android.R.layout.simple_list_item_1,list);
+            //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,list);
             try {
                 //ArrayList<String> ingredient = new ArrayList<String>();
                 JSONArray reci = new JSONArray(result);
@@ -134,8 +132,9 @@ public class MyFridge extends Fragment {
             } catch (final JSONException e) {
             }
             // item.setText(item2);
+            MyFridgeAdapter adapter = new MyFridgeAdapter(getActivity(), list);
             listview.setAdapter(adapter);
-            MyFridgeAdapter adapter2= new MyFridgeAdapter(getActivity(),list);
+
         }
     }
 }

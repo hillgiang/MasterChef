@@ -47,18 +47,18 @@ public class LazyAdapter extends BaseAdapter {
         if(convertView==null)
             vi = inflater.inflate(R.layout.recipes_list_row, null);
 
-        TextView title = (TextView)vi.findViewById(R.id.title); // title
-        TextView author = (TextView)vi.findViewById(R.id.author); // artist name
+        TextView title = (TextView)vi.findViewById(R.id.title); // recipe title
+        TextView author = (TextView)vi.findViewById(R.id.author); // author
         ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image); // thumb image
 
-        HashMap<String, String> song = new HashMap<String, String>();
-        song = data.get(position);
+        HashMap<String, String> recipe = new HashMap<String, String>();
+        recipe = data.get(position);
 
         // Setting all values in listview
-        title.setText(song.get(GetRecipes.KEY_TITLE));
+        title.setText(recipe.get(GetRecipes.KEY_TITLE));
         author.setText("#");
         thumb_image.setImageResource(R.drawable.foods);
-        //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
+        //imageLoader.DisplayImage(recipe.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
         return vi;
     }
 }
