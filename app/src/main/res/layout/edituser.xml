@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
+    android:layout_height="match_parent" android:background="@color/bg_register"
+    android:weightSum="1" android:padding="10dp" android:paddingLeft="20dp"
+    android:paddingRight="20dp" >
 
 
     <ImageView
@@ -17,16 +18,17 @@
         android:src="@drawable/foods" />
 
     <Button
-            android:id="@+id/changephtot"
+            android:id="@+id/changephoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/list_image"
             android:layout_marginTop="1dip"
+            android:layout_marginBottom="15dp"
             android:background="@null"
             android:text=" change the photo "
             android:layout_alignLeft="@+id/list_image"
             android:layout_alignRight="@+id/list_image"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:textColor="@color/bg_main"
             android:textAllCaps="false"
             android:textSize="15dp"
@@ -35,33 +37,37 @@
             android:onClick="toChangePhoto" />
 
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="  名字"
+        android:textColor="#ea4c88"
+        android:textSize="16dip"
+        android:layout_weight="0.07" />
 
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:background="@null"
-            android:hint="@string/hint_name"
-            android:padding="15dp"
-            android:inputType="textCapWords"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
 
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
+        android:hint="@string/hint_name"
+        android:inputType="textCapWords"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
     <Button
         android:id="@+id/edit"
-        android:layout_width="122dp"
-        android:layout_height="63dp"
-        android:layout_below="@+id/name"
-        android:layout_gravity="center"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="13dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
         android:background="@color/btn_login_bg"
-        android:onClick="EditUser"
-        android:padding="15dip"
         android:text="確定更改"
-        android:textColor="@color/bg_register"
-        android:textSize="16dip" />
+        android:textColor="@color/bg_register" />
 
 
 </LinearLayout>

@@ -7,6 +7,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import android.widget.EditText;
 import android.content.Context;
 import android.widget.TextView;
 import android.content.Intent;
@@ -14,22 +15,18 @@ import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
-
 /**
- * Created by user on 2017/8/10.
+ * Created by user on 2017/8/21.
  */
+public class EditGetUser extends AsyncTask<String, String, String> {
+    private Context context;
+    private EditText user;
 
-public class GetUserInfo extends AsyncTask<String, String, String> {
-    private UsersInfo context;
-    private TextView userinfo;
-
-    public GetUserInfo(UsersInfo context, TextView userinfo) {
-        this.userinfo = userinfo;
+    public EditGetUser(Edituser context, EditText user) {
+        this.user = user;
         this.context = context;
     }
-
-
-    protected void onPreExecute() {
+    protected void onPreExecute(){
     }
 
     protected String doInBackground(String... arg0) {
@@ -63,16 +60,13 @@ public class GetUserInfo extends AsyncTask<String, String, String> {
             return new String("Exception: " + e.getMessage());
         }
     }
-
     protected void onPostExecute(String result) {
         if (result.contains("Exception:") == true) {
-            this.userinfo.setText(result);
+            this.user.setText(result);
         } else {
             String[] temp = null;
             temp = result.split(",");
-            this.userinfo.setText("名字 : "+temp[4]+"\n冰箱RPi : "+temp[3]);
-
+            this.user.setText(temp[4]);
         }
     }
 }
-
