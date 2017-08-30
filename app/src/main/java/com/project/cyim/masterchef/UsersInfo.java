@@ -74,7 +74,7 @@ public class UsersInfo extends Fragment {
         return v;
     }
     public void Edit(View view){
-        startActivity(new Intent(this, Edituser.class));
+        startActivity(new Intent(getActivity(), Edituser.class));
     }
     // tab
     private void setupViewPager(ViewPager viewPager) {

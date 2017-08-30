@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 /**
@@ -19,7 +20,7 @@ import java.util.Locale;
  */
 
 public class UserMore extends AppCompatActivity {
-    String[] moreArray = new String[3];
+    ArrayList<String> moreArray = new ArrayList<String>();
     private ListView listView;
     SessionManagement session;
     AlertDialog levelDialog;
@@ -29,9 +30,13 @@ public class UserMore extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_more);
-        moreArray[0] = getString(R.string.language_text);
-        moreArray[1] = getString(R.string.aboutus_text);
-        moreArray[2] = getString(R.string.logout_text);
+        //moreArray[0] = getString(R.string.language_text);
+        //moreArray[1] = getString(R.string.aboutus_text);
+        //moreArray[2] = getString(R.string.logout_text);
+
+        moreArray.add(getString(R.string.language_text));
+        moreArray.add(getString(R.string.aboutus_text));
+        moreArray.add(getString(R.string.logout_text));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.option));

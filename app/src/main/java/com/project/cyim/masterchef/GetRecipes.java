@@ -104,7 +104,8 @@ public class GetRecipes extends AsyncTask<String, String, String> {
                 if (thumbnail.equals(""))
                     thumbnail = R.drawable.foods + "";
                 // tmp hash map for single contact
-                thumbnail = "http://" + thumbnail;
+                if (thumbnail.indexOf("http") == -1)
+                    thumbnail = "http://" + thumbnail;
                 HashMap<String, String> reci2 = new HashMap<>();
 
                 // adding each child node to HashMap key => value
