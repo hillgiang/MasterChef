@@ -28,7 +28,7 @@
             android:text=" change the photo "
             android:layout_alignLeft="@+id/list_image"
             android:layout_alignRight="@+id/list_image"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:textColor="@color/bg_main"
             android:textAllCaps="false"
             android:textSize="15dp"
@@ -67,8 +67,7 @@
         android:layout_marginTop="20dip"
         android:background="@color/btn_login_bg"
         android:text="確定更改"
-        android:textColor="@color/bg_register"
-        android:onClick="EditUser"/>
+        android:textColor="@color/bg_register" />
 
 
 </LinearLayout>

@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -20,13 +22,18 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by user on 2017/8/8.
  * 我的冰箱
  */
 public class MyFridge extends Fragment {
-    TextView item;
+    private ListView listview;
+
+    // TextView item;
+    SessionManagement session;
+
     public MyFridge() {
         // Required empty public constructor
     }
@@ -41,18 +48,25 @@ public class MyFridge extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.my_fridge, container, false);
-        item = (TextView) v.findViewById(R.id.item);
-        new FridgeData(getContext()).execute();
+        //item = (TextView) v.findViewById(R.id.item);
+        listview = (ListView) v.findViewById(R.id.listview);
+        session = new SessionManagement(getActivity());
+
+
+        HashMap<String, String> user = session.getUserDetails();
+        String email = user.get(SessionManagement.KEY_EMAIL);
+        new FridgeData(this, listview).execute(email);
         return v;
     }
 
 
     class FridgeData extends AsyncTask<String, String, String> {
-        private Context context;
-        SessionManagement session;
+        private MyFridge context;
+        private ListView listview;
 
-        public FridgeData(Context context) {
+        public FridgeData(MyFridge context, ListView listview) {
             this.context = context;
+            this.listview = listview;
         }
 
         protected void onPreExecute() {
@@ -61,13 +75,13 @@ public class MyFridge extends Fragment {
         @Override
         protected String doInBackground(String... arg0) {
             try {
-                //String username = (String) arg0[0];
+                String username = (String) arg0[0];
                 //String password = (String) arg0[1];
 
                 String ip = "http://140.135.113.99";
-                String link = ip + "/loginpost.php";
+                String link = ip + "/GetFridgeDetail.php";
                 String data = URLEncoder.encode("username", "UTF-8") + "=" +
-                        URLEncoder.encode("", "UTF-8");
+                        URLEncoder.encode(username, "UTF-8");
 
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();
@@ -96,19 +110,32 @@ public class MyFridge extends Fragment {
             }
         }
 
+        //String item2;
         @Override
         protected void onPostExecute(String result) {
+            ArrayList<String> list = new ArrayList<String>();
+            ArrayAdapter<String> adapter =
+                    new ArrayAdapter<String>(getActivity(),
+                            android.R.layout.simple_list_item_1,list);
             try {
                 //ArrayList<String> ingredient = new ArrayList<String>();
                 JSONArray reci = new JSONArray(result);
                 for (int i = 0; i < reci.length(); i++) {
                     JSONObject c = reci.getJSONObject(i);
-
-                    String item = c.getString("fridge_ingredient");
+                    String item2 = c.getString("fridge_ingredient");
+                    String[] temp = null;
+                    temp = item2.split(",");
+                    for (int j = 0; j < temp.length; ++j) {
+                        list.add(temp[j]);
+                    }
                     //ingredient.add(item);
                 }
+
             } catch (final JSONException e) {
             }
+            // item.setText(item2);
+            listview.setAdapter(adapter);
+            MyFridgeAdapter adapter2= new MyFridgeAdapter(getActivity(),list);
         }
     }
 }
