@@ -9,23 +9,30 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.support.v4.view.ViewPager;
-
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by yu fen on 2017/8/10.
  */
 
-public class Food extends AppCompatActivity {
+public class Food extends AppCompatActivity implements OnFragmentInteractionListener {
     // tab
     private TabLayout tabLayout;
     private ViewPager viewPager;
     SessionManagement session;
     private BottomBar bottomBar;
+    ViewPagerAdapter adapter;
+    int recipe_id;
+
+    HashMap<String, String> intro = new HashMap<String, String>();
+    HashMap<String, String> ingredient = new HashMap<String, String>();
+    HashMap<String, String> steps = new HashMap<String, String>();
+    HashMap<String, String> discuss = new HashMap<String, String>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,19 @@ public class Food extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        // get recipe id
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                recipe_id = -1;
+            } else {
+                recipe_id = extras.getInt("RECIPE_ID");
+            }
+        } else {
+            recipe_id = Integer.parseInt((String)savedInstanceState.getSerializable("RECIPE_ID"));
+        }
+
+        /**
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -52,11 +72,12 @@ public class Food extends AppCompatActivity {
                 }
             }
         });
+         **/
     }
 
     // tab
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new IntrFrag(), getString(R.string.intro));
         adapter.addFragment(new ReciFrag(), getString(R.string.ingredient));
         adapter.addFragment(new StepFrag(), getString(R.string.step));
@@ -105,5 +126,10 @@ public class Food extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public int recipe_id() {
+        return recipe_id;
     }
 }

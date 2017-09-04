@@ -14,7 +14,6 @@ import com.project.cyim.masterchef.R;
  */
 
 public class NewIntroFrag extends Fragment {
-    private OnFragmentInteractionListener mListener;
 
     public NewIntroFrag() {
         // Required empty public constructor
@@ -32,23 +31,7 @@ public class NewIntroFrag extends Fragment {
         return inflater.inflate(R.layout.new_intro_frag, container, false);
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
+    public interface IntroFragmentInteractionListener {
         public void onFragmentInteraction(String userContent, int size, int colorValue);
     }
 }

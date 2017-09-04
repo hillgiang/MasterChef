@@ -21,11 +21,11 @@ import java.util.HashMap;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHolder> {
     private ArrayList<HashMap<String, String>> list;
     private Context mContext;
-    int id;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, author;
         public ImageView thumbnail;
+        public int id;
 
         public MyViewHolder(View view) {
             super(view);
@@ -71,7 +71,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         HashMap<String, String> recipe = list.get(position);
         holder.title.setText(recipe.get(GetRecipes.KEY_TITLE));
         holder.author.setText(recipe.get(GetRecipes.KEY_AUTHOR));
-        id = Integer.parseInt(recipe.get(GetRecipes.KEY_ID));
+        holder.id = Integer.parseInt(recipe.get(GetRecipes.KEY_ID));
 
         // loading album cover using Glide library
         Glide.with(mContext)
