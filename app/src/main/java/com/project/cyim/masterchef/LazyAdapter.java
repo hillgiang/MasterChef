@@ -12,6 +12,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 /**
  * Created by Hillary on 7/31/2017.
  */
@@ -55,9 +58,19 @@ public class LazyAdapter extends BaseAdapter {
         recipe = data.get(position);
 
         // Setting all values in listview
-        title.setText(recipe.get(GetRecipes.KEY_TITLE));
-        author.setText("#");
-        thumb_image.setImageResource(R.drawable.foods);
+        title.setText(recipe.get("TITLE"));
+        author.setText(recipe.get("AUTHOR"));
+
+        String thumb = recipe.get("THUMBNAIL");
+        if (thumb.equals(""))
+            thumb = R.drawable.foods + "";
+        if (thumb.indexOf("http") == -1)
+            thumb = "http://" + thumb;
+        Glide.with(activity)
+                .load(thumb)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(thumb_image);
         //imageLoader.DisplayImage(recipe.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
         return vi;
     }
