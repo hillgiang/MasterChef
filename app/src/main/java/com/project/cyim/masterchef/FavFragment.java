@@ -48,8 +48,8 @@ public class FavFragment extends Fragment{
     // tab
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new OneFragment(), "ONE");
-        adapter.addFragment(new TwoFragment(), "TWO");
+        //adapter.addFragment(new OneFragment(), "ONE");
+        //adapter.addFragment(new TwoFragment(), "TWO");
         viewPager.setAdapter(adapter);
     }
 

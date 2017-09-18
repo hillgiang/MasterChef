@@ -1,6 +1,5 @@
 package com.project.cyim.masterchef;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +31,7 @@ public class SearchFragmentInWord extends Fragment {
 
     SearchView searchView;
     ListView listview;
+    TextView noresult;
 
     public SearchFragmentInWord() {
 
@@ -48,6 +48,7 @@ public class SearchFragmentInWord extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.searchfragment_word, container, false);
         listview = (ListView)v.findViewById(R.id.list);
+        noresult = (TextView)v.findViewById(R.id.noresult);
 
         searchView=(SearchView) v.findViewById(R.id.searchView);
         searchView.setQueryHint("Please enter recipe title...");
@@ -119,29 +120,32 @@ public class SearchFragmentInWord extends Fragment {
         }
 
         protected void onPostExecute(String result) {
-            Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
-            ArrayList<HashMap<String,String>> result_list = new ArrayList<HashMap<String,String>>();
-            try {
-                JSONArray reci = new JSONArray(result);
-                for (int i = 0; i < reci.length(); i++) {
-                    HashMap<String, String> item = new HashMap<>();
-                    JSONObject c = reci.getJSONObject(i);
-                    String title = c.getString("recipes_name");
-                    String author = c.getString("user_id");
-                    String thumbnail = c.getString("thumbnail");
+            if ( result.equals("none") )
+                noresult.setText(R.string.noresult);
+            else {
+                ArrayList<HashMap<String, String>> result_list = new ArrayList<HashMap<String, String>>();
+                try {
+                    JSONArray reci = new JSONArray(result);
+                    for (int i = 0; i < reci.length(); i++) {
+                        HashMap<String, String> item = new HashMap<>();
+                        JSONObject c = reci.getJSONObject(i);
+                        String title = c.getString("recipes_name");
+                        String author = c.getString("user_id");
+                        String thumbnail = c.getString("thumbnail");
 
-                    item.put("TITLE", title);
-                    item.put("AUTHOR", author);
-                    item.put("THUMBNAIL", thumbnail);
+                        item.put("TITLE", title);
+                        item.put("AUTHOR", author);
+                        item.put("THUMBNAIL", thumbnail);
 
-                    result_list.add(item);
+                        result_list.add(item);
+                    }
+
+                } catch (final JSONException e) {
                 }
 
-            } catch (final JSONException e) {
+                LazyAdapter adapter = new LazyAdapter(getActivity(), result_list);
+                listview.setAdapter(adapter);
             }
-
-            LazyAdapter adapter = new LazyAdapter(getActivity(), result_list);
-            listview.setAdapter(adapter);
         }
     }
 }

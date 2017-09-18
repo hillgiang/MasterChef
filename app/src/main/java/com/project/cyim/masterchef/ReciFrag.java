@@ -9,12 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +24,6 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by yu fen on 2017/8/10.
@@ -51,7 +46,7 @@ public class ReciFrag extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-          View v = inflater.inflate(R.layout.frag_reci, container, false);
+        View v = inflater.inflate(R.layout.frag_reci, container, false);
         ingredient_list = (ListView)v.findViewById(R.id.ingredient_list);
 
         int id = ((OnFragmentInteractionListener)getActivity()).recipe_id();
@@ -110,17 +105,22 @@ public class ReciFrag extends Fragment{
         //String item2;
         @Override
         protected void onPostExecute(String result) {
-
+            ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
             try {
                 JSONArray reci = new JSONArray(result);
                 JSONObject c = reci.getJSONObject(0);
 
+                HashMap<String, String> item = new HashMap<>();
+                item.put("NAME", c.getString(""));
+                item.put("WEIGHT", c.getString(""));
 
-
-                //discuss.put("DISCUSS", );
+                list.add(item);
             } catch (final JSONException e) {
                 e.printStackTrace();
             }
+
+            IngredientAdapter adapter = new IngredientAdapter(getContext(), list);
+            ingredient_list.setAdapter(adapter);
         }
     }
 
@@ -143,7 +143,11 @@ public class ReciFrag extends Fragment{
             // TODO Auto-generated method stub
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             convertView = inflater.inflate(R.layout.ingredient_row, parent, false);
-
+            HashMap<String, String> item = list.get(position);
+            TextView name = (TextView) convertView.findViewById(R.id.name);
+            name.setText(item.get("NAME"));
+            TextView weight = (TextView) convertView.findViewById(R.id.weight);
+            weight.setText(item.get("WEIGHT"));
 
             return convertView;
         }
