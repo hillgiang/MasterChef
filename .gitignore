@@ -47,3 +47,4 @@ captures/
 # Image Classification Model
 app/src/main/assets
 app/src/main/jniLibs
+app/libs
