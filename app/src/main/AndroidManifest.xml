@@ -25,6 +25,7 @@
         <activity android:name=".Edituser"/>
         <activity android:name=".Food"/>
         <activity android:name=".ImageUpload"/>
+        <activity android:name=".FridgeEdit"/>
     </application>
 
 </manifest>

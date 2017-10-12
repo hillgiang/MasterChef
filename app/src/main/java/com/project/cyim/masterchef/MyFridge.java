@@ -1,6 +1,7 @@
 package com.project.cyim.masterchef;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,7 +32,7 @@ import java.util.HashMap;
  */
 public class MyFridge extends Fragment {
     private ListView listview;
-
+    private Button add;
     // TextView item;
     SessionManagement session;
 
@@ -50,8 +52,8 @@ public class MyFridge extends Fragment {
         View v = inflater.inflate(R.layout.my_fridge, container, false);
         //item = (TextView) v.findViewById(R.id.item);
         listview = (ListView) v.findViewById(R.id.listview);
+        add = (Button) v.findViewById(R.id.add);
         session = new SessionManagement(getActivity());
-
 
         HashMap<String, String> user = session.getUserDetails();
         String email = user.get(SessionManagement.KEY_EMAIL);
@@ -134,7 +136,6 @@ public class MyFridge extends Fragment {
             // item.setText(item2);
             MyFridgeAdapter adapter = new MyFridgeAdapter(getActivity(), list);
             listview.setAdapter(adapter);
-
         }
     }
 }
