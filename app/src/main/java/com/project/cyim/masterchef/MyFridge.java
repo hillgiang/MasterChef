@@ -1,6 +1,5 @@
 package com.project.cyim.masterchef;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,11 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -58,6 +55,7 @@ public class MyFridge extends Fragment {
         //item = (TextView) v.findViewById(R.id.item);
         listview = (ListView) v.findViewById(R.id.listview);
         session = new SessionManagement(getActivity());
+
         delete = (Button) v.findViewById(R.id.delete);
 
         HashMap<String, String> user = session.getUserDetails();
@@ -180,6 +178,8 @@ public class MyFridge extends Fragment {
             } else if (task.equals("delete")) {
                 Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
             }
+            MyFridgeAdapter adapter = new MyFridgeAdapter(getActivity(), list);
+            listview.setAdapter(adapter);
         }
     }
 }
