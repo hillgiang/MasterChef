@@ -10,10 +10,17 @@
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:padding="@dimen/activity_horizontal_margin">
     </ListView>
 
     <LinearLayout
+=======
+        android:padding="@dimen/activity_horizontal_margin"></ListView>
+
+    <Button
+        android:id="@+id/edit"
+>>>>>>> 964694e89201a6aba763226256d3f9eca9fc0b23
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal" >
