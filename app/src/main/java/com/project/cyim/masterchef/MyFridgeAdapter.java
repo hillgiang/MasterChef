@@ -36,10 +36,9 @@ public class MyFridgeAdapter extends ArrayAdapter
         // TODO Auto-generated method stub
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         convertView = inflater.inflate(R.layout.myfridge_list, parent, false);
-        TextView name = (TextView) convertView.findViewById(R.id.label);
-        CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkbox1);
 
-        name.setText(modelItems.get(position));
+        CheckedTextView chkBshow = (CheckedTextView) convertView.findViewById(R.id.check1);
+        chkBshow.setText(modelItems.get(position));
 
         return convertView;
     }

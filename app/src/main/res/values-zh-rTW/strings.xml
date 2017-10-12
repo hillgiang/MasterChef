@@ -43,4 +43,6 @@
     <string name="upload">上傳</string>
     <string name="toggle_camera">Toggle Camera</string>
     <string name="detect_object">Detect Object</string>
+
+    <string name="delete">刪除</string>
 </resources>

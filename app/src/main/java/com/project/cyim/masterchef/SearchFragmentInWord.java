@@ -87,8 +87,7 @@ public class SearchFragmentInWord extends Fragment {
                 String recipes_name = (String) arg0[0];
 
                 String ip = "http://140.135.113.99";
-                String link = ip + "/SearchRecipeByName.php";
-                String data = URLEncoder.encode("recipes_name", "UTF-8") + "=" +
+                String link = ip + "/SearchRecipeByName.php?recipes_name=" +
                         URLEncoder.encode(recipes_name, "UTF-8");
 
                 URL url = new URL(link);
@@ -97,7 +96,7 @@ public class SearchFragmentInWord extends Fragment {
                 conn.setDoOutput(true);
                 OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
-                wr.write(data);
+                //wr.write(data);
                 wr.flush();
 
                 BufferedReader reader = new BufferedReader(new

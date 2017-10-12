@@ -44,4 +44,6 @@
     <string name="upload">Upload</string>
     <string name="toggle_camera">Toggle Camera</string>
     <string name="detect_object">Detect Object</string>
+
+    <string name="delete">Delete Items</string>
 </resources>
