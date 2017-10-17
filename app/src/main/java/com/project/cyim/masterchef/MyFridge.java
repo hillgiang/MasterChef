@@ -178,8 +178,6 @@ public class MyFridge extends Fragment {
             } else if (task.equals("delete")) {
                 Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
             }
-            MyFridgeAdapter adapter = new MyFridgeAdapter(getActivity(), list);
-            listview.setAdapter(adapter);
         }
     }
 }

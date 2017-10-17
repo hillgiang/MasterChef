@@ -35,6 +35,6 @@ dependencies {
     compile 'com.roughike:bottom-bar:2.0'
     compile 'net.gotev:uploadservice:2.1'
     compile 'com.flurgle:camerakit:0.9.17'
-    compile files('libs/libandroid_tensorflow_inference_java.jar')
+    //compile files('libs/libandroid_tensorflow_inference_java.jar')
     testCompile 'junit:junit:4.12'
 }
