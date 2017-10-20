@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_shadow_start_color"
+    tools:context=".UploadSteps">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="305dip"
+        android:layout_alignParentTop="true"
+        android:layout_weight="2"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <ImageButton
+            android:id="@+id/image4"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="0.19"
+            app:srcCompat="@drawable/ic_action_camera" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="157dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="22dp"
+            android:layout_weight="0.19"
+            android:text="步驟一"
+            android:textSize="24dp" />
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginStart="22dp"
+            android:text="輸入步驟內容..."
+            android:textSize="24sp" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:backgroundTint="@color/white"
+        android:text="加步驟"
+        android:textSize="24sp" />
+
+</RelativeLayout>
