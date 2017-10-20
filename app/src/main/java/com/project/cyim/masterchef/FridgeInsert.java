@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,39 +17,27 @@ import java.util.List;
  * Created by Hillary on 8/4/2017.
  */
 
-public class SearchFragment extends Fragment{
-
+public class FridgeInsert extends AppCompatActivity {
+    SessionManagement session;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    public static SearchFragment newInstance() {
-        SearchFragment fragment = new SearchFragment();
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        setContentView(R.layout.fridge_insert);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.favorites, container, false);
-
-        // tab
-        viewPager = (ViewPager) v.findViewById(R.id.pager);
+        viewPager = (ViewPager) findViewById(R.id.pager);
         setupViewPager(viewPager);
-        tabLayout = (TabLayout) v.findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-        return v;
     }
+
 
     private void setupViewPager(ViewPager viewPager) {
-        SearchFragment.ViewPagerAdapter adapter = new SearchFragment.ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new SearchFragmentInWord(), "文字搜尋");
-        //adapter.addFragment(new SearchFragmentInPic(), "圖片搜尋");
+        FridgeInsert.ViewPagerAdapter adapter = new FridgeInsert.ViewPagerAdapter(getSupportFragmentManager() );
+        adapter.addFragment(new FridgeInsertWord(), "文字新增");
+        adapter.addFragment(new FridgeInsertPic(), "圖片新增");
         viewPager.setAdapter(adapter);
     }
 

@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:background="@color/bg_register"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="298dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/ingredient"
+        android:textColor="#ea4c88"
+        android:textSize="25dip"
+        android:layout_weight="0.18" />
+
+    <EditText
+        android:id="@+id/ingredient"
+        android:layout_width="match_parent"
+        android:layout_height="261dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:inputType="textCapWords"
+        android:padding="10dp"
+        android:textColor="@color/bg_register"
+        android:layout_weight="0.57" />
+
+    <Button
+        android:id="@+id/insert"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:background="@color/btn_login_bg"
+        android:text="確定新增"
+        android:textColor="@color/bg_register" />
+
+</LinearLayout>
+</LinearLayout>

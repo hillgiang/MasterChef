@@ -45,5 +45,6 @@
     <string name="toggle_camera">Toggle Camera</string>
     <string name="detect_object">Detect Object</string>
 
-    <string name="delete">Delete Items</string>
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>
 </resources>

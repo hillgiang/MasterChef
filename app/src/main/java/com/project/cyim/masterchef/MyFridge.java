@@ -1,8 +1,11 @@
 package com.project.cyim.masterchef;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +38,8 @@ public class MyFridge extends Fragment {
     private ListView listview;
     List <Boolean> checkedlist = new ArrayList <Boolean>();
     Button delete;
+    Button add;
+    Button search;
     // TextView item;
     SessionManagement session;
 
@@ -55,11 +60,12 @@ public class MyFridge extends Fragment {
         //item = (TextView) v.findViewById(R.id.item);
         listview = (ListView) v.findViewById(R.id.listview);
         session = new SessionManagement(getActivity());
-
+        add = (Button) v.findViewById(R.id.add);
         delete = (Button) v.findViewById(R.id.delete);
+        search = (Button) v.findViewById(R.id.search);
 
         HashMap<String, String> user = session.getUserDetails();
-        String email = user.get(SessionManagement.KEY_EMAIL);
+        final String email = user.get(SessionManagement.KEY_EMAIL);
         new FridgeData(this, listview).execute("get", email);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,8 +86,28 @@ public class MyFridge extends Fragment {
                     if (!checkedlist.get(i))
                         checkeditems += list.get(i) + ","; //沒有要刪除
 
-                new FridgeData(MyFridge.this, listview).execute("delete", checkeditems);
+                new FridgeData(MyFridge.this, listview).execute("delete", checkeditems,email);
                 //Toast.makeText(getContext(), checkeditems, Toast.LENGTH_SHORT).show();
+            }
+        });
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String checkeditems = "";
+                for ( int i = 0; i < checkedlist.size(); i++ )
+                    if (checkedlist.get(i))
+                        checkeditems += list.get(i) + ","; //要搜尋的
+
+                new FridgeData(MyFridge.this, listview).execute("search", checkeditems);
+                //Toast.makeText(getContext(), checkeditems, Toast.LENGTH_SHORT).show();
+            }
+        });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //FragmentManager manager = getSupportFragmentManager();
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), FridgeInsert.class);
+                startActivity(intent);
             }
         });
 
@@ -143,6 +169,41 @@ public class MyFridge extends Fragment {
             } else if (task.equals("delete")) {
                 String checkeditems = (String) arg0[1];
                 try {
+                    String username = (String) arg0[2];
+                    String ip = "http://140.135.113.99";
+                    String link = ip + "/DeleteFridgeItem.php";
+                    String data = URLEncoder.encode("username", "UTF-8") + "=" +
+                            URLEncoder.encode(username, "UTF-8");
+                    data += "&" + URLEncoder.encode("checkeditems", "UTF-8") + "=" +
+                            URLEncoder.encode(checkeditems, "UTF-8");
+
+                    URL url = new URL(link);
+                    URLConnection conn = url.openConnection();
+
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write(data);
+                    wr.flush();
+
+                    BufferedReader reader = new BufferedReader(new
+                            InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                        break;
+                    }
+                    return sb.toString();
+                } catch (Exception e) {
+                    return new String("Exception: " + e.getMessage());
+                }
+            }else if (task.equals("search")) {
+                String checkeditems = (String) arg0[1];
+                try {
                     return checkeditems;
                 } catch (Exception e) {
                     return new String("Exception: " + e.getMessage());
@@ -177,9 +238,10 @@ public class MyFridge extends Fragment {
                 listview.setAdapter(adapter);
             } else if (task.equals("delete")) {
                 Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+            }else if (task.equals("search")) {
+                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
             }
-            MyFridgeAdapter adapter = new MyFridgeAdapter(getActivity(), list);
-            listview.setAdapter(adapter);
+
         }
     }
 }

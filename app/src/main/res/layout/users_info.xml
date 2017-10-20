@@ -63,7 +63,7 @@
             android:padding="15dip"
             android:text="@string/edit"
             android:textColor="@color/bg_register"
-            android:textSize="16dip"
+            android:textSize="13dip"
             android:layout_marginStart="12dp"
             android:layout_below="@+id/author"
             android:layout_toEndOf="@+id/thumbnail"
