@@ -34,12 +34,15 @@ import java.util.List;
  * 我的冰箱
  */
 public class MyFridge extends Fragment {
-    ArrayList<String> list = new ArrayList<String>();
+    List<String> list = new ArrayList<String>();
     private ListView listview;
     List <Boolean> checkedlist = new ArrayList <Boolean>();
+    List <String> list2 = new ArrayList <String>();
     Button delete;
     Button add;
     Button search;
+    MyFridgeAdapter adapter;
+    boolean firsttime_del = true;
     // TextView item;
     SessionManagement session;
 
@@ -81,13 +84,28 @@ public class MyFridge extends Fragment {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String checkeditems = "";
-                for ( int i = 0; i < checkedlist.size(); i++ )
-                    if (!checkedlist.get(i))
-                        checkeditems += list.get(i) + ","; //沒有要刪除
+                //nothing checked
+                int size = -1;
+                if (!firsttime_del)
+                    size = checkedlist.size() - 1;
+                else
+                    size = checkedlist.size();
+                boolean nothing = true;
+                firsttime_del = false;
+                for ( int i = 0; i < size; i++ )
+                    if (checkedlist.get(i))
+                        nothing = false;
 
-                new FridgeData(MyFridge.this, listview).execute("delete", checkeditems,email);
-                //Toast.makeText(getContext(), checkeditems, Toast.LENGTH_SHORT).show();
+                if (!nothing) {
+                    String checkeditems = "";
+                    for (int i = 0; i < size; i++)
+                        if (!checkedlist.get(i)) {
+                            checkeditems += list.get(i) + ","; //沒有要刪除
+                            list2.add(list.get(i));
+                        }
+                    new FridgeData(MyFridge.this, listview).execute("delete", checkeditems, email);
+                    //Toast.makeText(getContext(), checkeditems, Toast.LENGTH_SHORT).show();
+                }
             }
         });
         search.setOnClickListener(new View.OnClickListener() {
@@ -234,17 +252,16 @@ public class MyFridge extends Fragment {
                 } catch (final JSONException e) {
                 }
                 // item.setText(item2);
-                MyFridgeAdapter adapter = new MyFridgeAdapter(getActivity(), list);
+                adapter = new MyFridgeAdapter(getActivity(), list);
                 listview.setAdapter(adapter);
             } else if (task.equals("delete")) {
-                Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+                adapter.clear();
+                adapter.addAll(list2);
+                adapter.notifyDataSetChanged();
+                list = list2;
             }else if (task.equals("search")) {
                 Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
             }
-<<<<<<< HEAD
-
-=======
->>>>>>> 1903b4c1143c67a64229d2f51dd3da926b52ea3b
         }
     }
 }
