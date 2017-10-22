@@ -241,10 +241,8 @@ public class MyFridge extends Fragment {
             }else if (task.equals("search")) {
                 Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
             }
-<<<<<<< HEAD
 
-=======
->>>>>>> 1903b4c1143c67a64229d2f51dd3da926b52ea3b
+
         }
     }
 }
