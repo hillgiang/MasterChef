@@ -30,6 +30,7 @@ import java.util.HashMap;
 public class SearchFragmentInWord extends Fragment {
 
     SearchView searchView;
+    SearchView searchView2;
     ListView listview;
     TextView noresult;
 
@@ -51,14 +52,30 @@ public class SearchFragmentInWord extends Fragment {
         noresult = (TextView)v.findViewById(R.id.noresult);
 
         searchView=(SearchView) v.findViewById(R.id.searchView);
-        searchView.setQueryHint("Please enter recipe title...");
-
+        searchView.setQueryHint("搜尋食譜名稱");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //Toast.makeText(getActivity(), query, Toast.LENGTH_LONG).show();
-                new SearchData(SearchFragmentInWord.this).execute(query);
+                new SearchData(SearchFragmentInWord.this).execute("recipe", query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        searchView2=(SearchView) v.findViewById(R.id.searchView2);
+        searchView2.setQueryHint("搜尋食材，以逗號分開");
+        searchView2.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Toast.makeText(getActivity(), query, Toast.LENGTH_LONG).show();
+                new SearchData(SearchFragmentInWord.this).execute("ingredient", query);
                 return false;
             }
 
@@ -83,39 +100,76 @@ public class SearchFragmentInWord extends Fragment {
         }
 
         protected String doInBackground(String... arg0) {
-            try {
-                String recipes_name = (String) arg0[0];
 
-                String ip = "http://140.135.113.99";
-                String link = ip + "/SearchRecipeByName.php?recipes_name=" +
-                        URLEncoder.encode(recipes_name, "UTF-8");
+            String task = (String) arg0[0];
+            String name = (String) arg0[1] ;
 
-                URL url = new URL(link);
-                URLConnection conn = url.openConnection();
+            if ( task.equals("recipe") ) {
+                try {
+                    String ip = "http://140.135.113.99";
+                    String link = ip + "/SearchRecipeByName.php?recipes_name=" +
+                            URLEncoder.encode(name, "UTF-8");
 
-                conn.setDoOutput(true);
-                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+                    URL url = new URL(link);
+                    URLConnection conn = url.openConnection();
 
-                //wr.write(data);
-                wr.flush();
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
-                BufferedReader reader = new BufferedReader(new
-                        InputStreamReader(conn.getInputStream()));
+                    //wr.write(data);
+                    wr.flush();
 
-                StringBuilder sb = new StringBuilder();
-                String line = null;
+                    BufferedReader reader = new BufferedReader(new
+                            InputStreamReader(conn.getInputStream()));
 
-                // Read Server Response
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line);
-                    break;
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                        break;
+                    }
+                    return sb.toString();
+
+                } catch (Exception e) {
+                    return new String("Exception: " + e.getMessage());
                 }
+            } // if
+            else if ( task.equals("ingredient") ) {
+                try {
+                    String ip = "http://140.135.113.99";
+                    String link = ip + "/SearchRecipeByIngredient.php?ingredient=" +
+                            URLEncoder.encode(name, "UTF-8");
 
-                return sb.toString();
+                    URL url = new URL(link);
+                    URLConnection conn = url.openConnection();
 
-            } catch (Exception e) {
-                return new String("Exception: " + e.getMessage());
-            }
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    //wr.write(data);
+                    wr.flush();
+
+                    BufferedReader reader = new BufferedReader(new
+                            InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                        break;
+                    }
+                    return sb.toString();
+
+                } catch (Exception e) {
+                    return new String("Exception: " + e.getMessage());
+                }
+            } // else if
+
+            return null ;
         }
 
         protected void onPostExecute(String result) {
@@ -144,7 +198,7 @@ public class SearchFragmentInWord extends Fragment {
 
                 LazyAdapter adapter = new LazyAdapter(getActivity(), result_list);
                 listview.setAdapter(adapter);
-            }
+            } // else
         }
     }
 }
