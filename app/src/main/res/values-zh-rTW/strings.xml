@@ -46,4 +46,7 @@
 
     <string name="delete">刪除</string>
     <string name="add">新增</string>
+
+    <string name="search_result">搜尋結果</string>
+    <string name="insert">新增食材</string>
 </resources>

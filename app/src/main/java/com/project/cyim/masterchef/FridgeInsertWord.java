@@ -23,7 +23,6 @@ import java.util.HashMap;
  * Created by user on 2017/8/8.
  */
 public class FridgeInsertWord extends Fragment {
-
     Button insert;
     EditText item;
     String ingredient;
@@ -47,9 +46,9 @@ public class FridgeInsertWord extends Fragment {
         item = (EditText) v.findViewById(R.id.ingredient);
         insert = (Button) v.findViewById(R.id.insert);
 
+
         HashMap<String, String> user = session.getUserDetails();
         final String email = user.get(SessionManagement.KEY_EMAIL);
-
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -29,6 +29,7 @@
         <activity android:name=".ImageUpload"/>
         <activity android:name=".FridgeEdit"/>
         <activity android:name=".FridgeInsert"/>
+        <activity android:name=".MyFridgeSearch"/>
     </application>
 
 </manifest>

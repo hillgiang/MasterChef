@@ -47,4 +47,7 @@
 
     <string name="delete">Delete</string>
     <string name="add">Add</string>
+
+    <string name="search_result">Search Result</string>
+    <string name="insert">Insert Fridge Items</string>
 </resources>
