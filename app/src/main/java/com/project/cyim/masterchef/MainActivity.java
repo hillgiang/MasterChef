@@ -50,5 +50,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, GetAllRecipes.newInstance());
         transaction.commit();
+
     }
 }

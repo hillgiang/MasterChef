@@ -46,6 +46,7 @@ public class MyFridge extends Fragment {
     // TextView item;
     SessionManagement session;
 
+
     public MyFridge() {
         // Required empty public constructor
     }
@@ -80,7 +81,7 @@ public class MyFridge extends Fragment {
                 checkedlist.set(position, chkItem.isChecked());
             }
         });
-        
+
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,8 +117,14 @@ public class MyFridge extends Fragment {
                     if (checkedlist.get(i))
                         checkeditems += list.get(i) + ","; //要搜尋的
 
-                new FridgeData(MyFridge.this, listview).execute("search", checkeditems);
+                //new MyFridgeSearch.SearchFridge(this, "search").execute(checkeditems);
+                Intent intent = new Intent(getContext(), MyFridgeSearch.class);
+                intent.putExtra("SEARCH_ITEMS", checkeditems);
+                getContext().startActivity(intent);
                 //Toast.makeText(getContext(), checkeditems, Toast.LENGTH_SHORT).show();
+
+
+
             }
         });
         add.setOnClickListener(new View.OnClickListener() {
@@ -262,6 +269,7 @@ public class MyFridge extends Fragment {
             }else if (task.equals("search")) {
                 Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
             }
+
         }
     }
 }
