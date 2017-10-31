@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 
 import java.util.ArrayList;
@@ -24,9 +25,8 @@ public class UploadRecipe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload_edit_reci);
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.option));
+        getSupportActionBar().setTitle(getString(R.string.newrecipe));
 
         viewPager = (ViewPager) findViewById(R.id.pagers);
         setupViewPager(viewPager);
@@ -72,6 +72,19 @@ public class UploadRecipe extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // this takes the user 'back', as if they pressed the left-facing triangle icon on the main android toolbar.
+                // if this doesn't work as desired, another possibility is to call `finish()` here.
+                super.onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

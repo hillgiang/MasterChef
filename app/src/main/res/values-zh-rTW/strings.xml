@@ -46,4 +46,5 @@
 
     <string name="delete">刪除</string>
     <string name="add">新增</string>
+    <string name="newrecipe">新增食譜</string>
 </resources>

@@ -1,25 +1,33 @@
 package com.project.cyim.masterchef;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.view.ViewPager;
+import android.widget.ListView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * Created by Hillary on 8/4/2017.
  */
 
 public class FavFragment extends Fragment{
-    // tab
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    //list
+    private ListView listview;
+    SessionManagement session;
+
 
     public static FavFragment newInstance() {
         FavFragment fragment = new FavFragment();
@@ -35,51 +43,93 @@ public class FavFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.favorites, container, false);
+        //list
+        listview = (ListView)v.findViewById(R.id.list);
+        session = new SessionManagement(getActivity());
+        HashMap<String, String> user = session.getUserDetails();
+        final String email = user.get(SessionManagement.KEY_EMAIL);
+        new Favdata(FavFragment.this).execute("get",email);
 
-        // tab
-        viewPager = (ViewPager) v.findViewById(R.id.pager);
-        setupViewPager(viewPager);
-        tabLayout = (TabLayout) v.findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
 
         return v;
     }
+    class Favdata extends AsyncTask<String, String, String> {
 
-    // tab
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        //adapter.addFragment(new OneFragment(), "ONE");
-        //adapter.addFragment(new TwoFragment(), "TWO");
-        viewPager.setAdapter(adapter);
-    }
+        private FavFragment context;
 
-    // tab
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
+        public Favdata(FavFragment context) {
+            this.context = context;
         }
 
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
+        protected void onPreExecute() {
         }
 
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
+        protected String doInBackground(String... arg0) {
+
+            String task = (String) arg0[0];
+            String name = (String) arg0[1] ;
+
+
+            if ( task.equals("get") ) {
+                try {
+                    String ip = "http://140.135.113.99";
+                    String link = ip + "/MemberFav.php?username="+
+                            URLEncoder.encode(name, "UTF-8");
+
+
+                    URL url = new URL(link);
+                    URLConnection conn = url.openConnection();
+
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.flush();
+
+                    BufferedReader reader = new BufferedReader(new
+                            InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                        break;
+                    }
+                    return sb.toString();
+
+                } catch (Exception e) {
+                    return new String("Exception: " + e.getMessage());
+                }
+            } // else if
+
+            return null ;
         }
 
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
+        protected void onPostExecute(String result) {
+            ArrayList<HashMap<String, String>> result_list = new ArrayList<HashMap<String, String>>();
+            try {
+                JSONArray reci = new JSONArray(result);
+                for (int i = 0; i < reci.length(); i++) {
+                    HashMap<String, String> item = new HashMap<>();
+                    JSONObject c = reci.getJSONObject(i);
+                    String title = c.getString("recipes_name");
+                    String author = c.getString("user_id");
+                    String thumbnail = c.getString("thumbnail");
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
+                    item.put("TITLE", title);
+                    item.put("AUTHOR", author);
+                    item.put("THUMBNAIL", thumbnail);
+
+                    result_list.add(item);
+                }
+
+            } catch (final JSONException e) {
+            }
+
+            LazyAdapter adapter = new LazyAdapter(getActivity(), result_list);
+            listview.setAdapter(adapter);
         }
     }
 }

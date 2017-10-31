@@ -47,4 +47,5 @@
 
     <string name="delete">Delete</string>
     <string name="add">Add</string>
+    <string name="newrecipe">New recipe</string>
 </resources>

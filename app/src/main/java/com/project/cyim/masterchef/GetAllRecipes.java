@@ -103,7 +103,7 @@ public class GetAllRecipes extends Fragment {
         // handle item selection
         switch (item.getItemId()) {
             case R.id.action_write:
-                startActivity(new Intent(getActivity(), ImageUpload.class));
+                startActivity(new Intent(getActivity(), UploadRecipe.class));
                 return true;
             case R.id.action_cart:
                 return true;

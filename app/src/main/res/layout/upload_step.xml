@@ -7,52 +7,68 @@
     android:background="@color/cardview_shadow_start_color"
     tools:context=".UploadSteps">
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="305dip"
-        android:layout_alignParentTop="true"
-        android:layout_weight="2"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:weightSum="1">
-
-        <ImageButton
-            android:id="@+id/image4"
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_weight="0.19"
-            app:srcCompat="@drawable/ic_action_camera" />
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/steps">
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="305dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="2"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:weightSum="1">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="157dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="22dp"
-            android:layout_weight="0.19"
-            android:text="步驟一"
-            android:textSize="24dp" />
+                    <ImageButton
+                        android:id="@+id/thumb"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_weight="0.19"
+                        app:srcCompat="@drawable/ic_action_camera" />
 
-        <EditText
-            android:id="@+id/edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_marginStart="22dp"
-            android:text="輸入步驟內容..."
-            android:textSize="24sp" />
+                    <TextView
+                        android:id="@+id/stepno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="0.19"
+                        android:text="步驟1"
+                        android:textSize="24dp" />
+
+                    <EditText
+                        android:id="@+id/step_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_margin="5dp"
+                        android:hint="輸入步驟內容..."
+                        android:textSize="24sp"
+                        android:maxLines = "50"
+                        android:scrollbars = "vertical"/>
 
 
-    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_below="@+id/linearLayout3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
-        android:backgroundTint="@color/white"
-        android:text="加步驟"
-        android:textSize="24sp" />
+            <Button
+                android:id="@+id/addstep"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_below="@+id/steps"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="21dp"
+                android:backgroundTint="@color/white"
+                android:text="加步驟"
+                android:textSize="24sp" />
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
