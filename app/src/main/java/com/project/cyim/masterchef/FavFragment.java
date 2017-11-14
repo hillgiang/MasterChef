@@ -53,10 +53,10 @@ public class FavFragment extends Fragment{
 
         return v;
     }
-    class Favdata extends AsyncTask<String, String, String> {
+    public class Favdata extends AsyncTask<String, String, String> {
 
         private FavFragment context;
-
+        private String name;
 
         public Favdata(FavFragment context) {
             this.context = context;
@@ -68,7 +68,7 @@ public class FavFragment extends Fragment{
         protected String doInBackground(String... arg0) {
 
             String task = (String) arg0[0];
-            String name = (String) arg0[1] ;
+            name = (String) arg0[1] ;
 
 
             if ( task.equals("get") ) {
@@ -117,10 +117,12 @@ public class FavFragment extends Fragment{
                     String title = c.getString("recipes_name");
                     String author = c.getString("user_id");
                     String thumbnail = c.getString("thumbnail");
+                    String id = c.getString("recipes_id");
 
                     item.put("TITLE", title);
                     item.put("AUTHOR", author);
                     item.put("THUMBNAIL", thumbnail);
+                    item.put("ID", id);
 
                     result_list.add(item);
                 }
@@ -128,7 +130,7 @@ public class FavFragment extends Fragment{
             } catch (final JSONException e) {
             }
 
-            LazyAdapter adapter = new LazyAdapter(getActivity(), result_list);
+            FavAdapter adapter = new FavAdapter(getActivity(), result_list, name);
             listview.setAdapter(adapter);
         }
     }

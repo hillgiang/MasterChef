@@ -25,14 +25,9 @@ public class Food extends AppCompatActivity implements OnFragmentInteractionList
     private TabLayout tabLayout;
     private ViewPager viewPager;
     SessionManagement session;
-    private BottomBar bottomBar;
     ViewPagerAdapter adapter;
     int recipe_id;
-
-    HashMap<String, String> intro = new HashMap<String, String>();
-    HashMap<String, String> ingredient = new HashMap<String, String>();
-    HashMap<String, String> steps = new HashMap<String, String>();
-    HashMap<String, String> discuss = new HashMap<String, String>();
+    String recipe_title;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,8 +35,6 @@ public class Food extends AppCompatActivity implements OnFragmentInteractionList
         setContentView(R.layout.food);
 
         session = new SessionManagement(getApplicationContext());
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.option));
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         setupViewPager(viewPager);
@@ -53,12 +46,18 @@ public class Food extends AppCompatActivity implements OnFragmentInteractionList
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 recipe_id = -1;
+                recipe_title = "-1";
             } else {
                 recipe_id = extras.getInt("RECIPE_ID");
+                recipe_title = extras.getString("RECIPE_TITLE");
             }
         } else {
             recipe_id = Integer.parseInt((String)savedInstanceState.getSerializable("RECIPE_ID"));
+            recipe_title = (String)savedInstanceState.getSerializable("RECIPE_TITLE");
         }
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(recipe_title);
 
         /**
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);

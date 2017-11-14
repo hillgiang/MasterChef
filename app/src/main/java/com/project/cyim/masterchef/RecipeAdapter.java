@@ -26,6 +26,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         public TextView title, author;
         public ImageView thumbnail;
         public int id;
+        String title_str;
 
         public MyViewHolder(View view) {
             super(view);
@@ -38,6 +39,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, Food.class);
                     intent.putExtra("RECIPE_ID", id);
+                    intent.putExtra("RECIPE_TITLE", title_str);
                     mContext.startActivity(intent);
                 }
             });
@@ -47,6 +49,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, Food.class);
                     intent.putExtra("RECIPE_ID", id);
+                    intent.putExtra("RECIPE_TITLE", title_str);
                     mContext.startActivity(intent);
                 }
             });
@@ -69,7 +72,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         HashMap<String, String> recipe = list.get(position);
-        holder.title.setText(recipe.get(GetRecipes.KEY_TITLE));
+        holder.title_str = recipe.get(GetRecipes.KEY_TITLE);
+        holder.title.setText(holder.title_str);
         holder.author.setText(recipe.get(GetRecipes.KEY_AUTHOR));
         holder.id = Integer.parseInt(recipe.get(GetRecipes.KEY_ID));
 
