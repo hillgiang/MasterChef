@@ -46,11 +46,19 @@
 
     <string name="delete">刪除</string>
     <string name="add">新增</string>
-<<<<<<< HEAD
-    <string name="newrecipe">新增食譜</string>
-=======
 
     <string name="search_result">搜尋結果</string>
     <string name="insert">新增食材</string>
->>>>>>> a6b784218102871c5ad48536abbcef99474bb2b0
+
+    <string name="spinner_prompt">食材類別</string>
+
+    <array name="spn_list">
+        <item>全榖根莖類</item>
+        <item>蔬菜類</item>
+        <item>蛋豆魚肉類</item>
+        <item>水果類</item>
+        <item>低脂乳品類</item>
+        <item>其他類</item>
+    </array>
+
 </resources>

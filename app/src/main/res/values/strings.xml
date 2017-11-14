@@ -47,11 +47,20 @@
 
     <string name="delete">Delete</string>
     <string name="add">Add</string>
-<<<<<<< HEAD
+
     <string name="newrecipe">New recipe</string>
-=======
 
     <string name="search_result">Search Result</string>
     <string name="insert">Insert Fridge Items</string>
->>>>>>> a6b784218102871c5ad48536abbcef99474bb2b0
+
+    <string name="spinner_prompt">Ingredient type</string>
+    <array name="spn_list">
+        <item>全榖根莖類</item>
+        <item>蔬菜類</item>
+        <item>蛋豆魚肉類</item>
+        <item>水果類</item>
+        <item>低脂乳品類</item>
+        <item>其他類</item>
+    </array>
+
 </resources>

@@ -3,6 +3,8 @@ package com.project.cyim.masterchef;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Spinner;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -27,6 +30,8 @@ public class FridgeInsertWord extends Fragment {
     EditText item;
     String ingredient;
     SessionManagement session;
+    private Spinner sp;
+    ArrayAdapter<String> adapter ;
 
     public FridgeInsertWord() {
         // Required empty public constructor
@@ -45,10 +50,15 @@ public class FridgeInsertWord extends Fragment {
         session = new SessionManagement(getActivity());
         item = (EditText) v.findViewById(R.id.ingredient);
         insert = (Button) v.findViewById(R.id.insert);
-
+        sp = (Spinner) v.findViewById(R.id.spn);
 
         HashMap<String, String> user = session.getUserDetails();
         final String email = user.get(SessionManagement.KEY_EMAIL);
+
+        ArrayAdapter<CharSequence> nAdapter = ArrayAdapter.createFromResource(
+                getContext(), R.array.spn_list, android.R.layout.simple_spinner_item );
+        sp.setAdapter(nAdapter);
+
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +67,7 @@ public class FridgeInsertWord extends Fragment {
                 new  InsertFridge(FridgeInsertWord.this, "insert").execute( ingredient,email);
             }
         });
+
 
         return v;
     }
@@ -115,7 +126,8 @@ public class FridgeInsertWord extends Fragment {
             protected void onPostExecute(String result) {
                 if (task.equals("insert")) {
                     Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
-                    //無法跳回UsersInfo那頁 Intent intent = new Intent(getActivity(), UsersInfo.class);startActivity(intent)
+                    Intent intent = new Intent(getActivity(), UsersInfo.class);
+                    startActivity(intent);
                 }
 
             }
