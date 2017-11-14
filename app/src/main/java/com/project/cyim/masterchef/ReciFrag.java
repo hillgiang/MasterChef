@@ -71,7 +71,7 @@ public class ReciFrag extends Fragment{
                 String id = (String) arg0[0];
 
                 String ip = "http://140.135.113.99";
-                String link = ip + "/GetRecipe.php";
+                String link = ip + "/GetRecipeIngredient.php";
                 String data = URLEncoder.encode("id", "UTF-8") + "=" +
                         URLEncoder.encode(id, "UTF-8");
 
@@ -111,8 +111,8 @@ public class ReciFrag extends Fragment{
                 JSONObject c = reci.getJSONObject(0);
 
                 HashMap<String, String> item = new HashMap<>();
-                item.put("NAME", c.getString(""));
-                item.put("WEIGHT", c.getString(""));
+                item.put("NAME", c.getString("ingredient"));
+                //item.put("WEIGHT", c.getString(""));
 
                 list.add(item);
             } catch (final JSONException e) {
@@ -146,8 +146,8 @@ public class ReciFrag extends Fragment{
             HashMap<String, String> item = list.get(position);
             TextView name = (TextView) convertView.findViewById(R.id.name);
             name.setText(item.get("NAME"));
-            TextView weight = (TextView) convertView.findViewById(R.id.weight);
-            weight.setText(item.get("WEIGHT"));
+            //TextView weight = (TextView) convertView.findViewById(R.id.weight);
+            //weight.setText(item.get("WEIGHT"));
 
             return convertView;
         }

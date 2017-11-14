@@ -36,7 +36,6 @@
                 android:textSize="28dp"
                 android:textStyle="bold"
                 android:layout_below="@+id/linearLayout"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_alignParentStart="true" />
 
             <RelativeLayout
@@ -73,23 +72,25 @@
                 android:orientation="horizontal"
                 android:layout_below="@+id/avatar"
                 android:layout_alignStart="@+id/avatar"
-                android:layout_marginTop="@dimen/activity_horizontal_margin">
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:weightSum="1">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/likepic"
                     android:layout_width="30dip"
                     android:layout_height="30dip"
-                    app:srcCompat="@drawable/ic_action_fav" />
+                    app:srcCompat="@drawable/whiteheart"/>
 
                 <TextView
                     android:id="@+id/liken"
-                    android:layout_width="39dip"
-                    android:layout_height="30dp"
+                    android:layout_width="50dip"
+                    android:layout_height="31dp"
                     android:gravity="center"
                     android:text="6,120"
-                    android:textSize="15dp" />
+                    android:textSize="18dp"
+                    android:layout_weight="0.05" />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/dispic"
                     android:layout_width="30dip"
                     android:layout_height="30dip"
@@ -97,13 +98,13 @@
 
                 <TextView
                     android:id="@+id/disn"
-                    android:layout_width="39dip"
+                    android:layout_width="50dip"
                     android:layout_height="30dp"
                     android:gravity="center"
                     android:text="4,156"
-                    android:textSize="15dp" />
+                    android:textSize="18dp" />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/sharepic"
                     android:layout_width="30dip"
                     android:layout_height="30dip"
@@ -111,11 +112,11 @@
 
                 <TextView
                     android:id="@+id/sharen"
-                    android:layout_width="39dip"
+                    android:layout_width="50dip"
                     android:layout_height="30dp"
                     android:gravity="center"
                     android:text="2,017"
-                    android:textSize="15dp" />
+                    android:textSize="18dp" />
 
             </LinearLayout>
 

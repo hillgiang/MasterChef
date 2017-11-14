@@ -34,7 +34,7 @@ public class SearchFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.favorites, container, false);
+        View v = inflater.inflate(R.layout.search, container, false);
 
         // tab
         viewPager = (ViewPager) v.findViewById(R.id.pager);

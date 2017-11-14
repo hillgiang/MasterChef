@@ -48,12 +48,14 @@
     <string name="delete">Delete</string>
     <string name="add">Add</string>
 
+
     <string name="newrecipe">New recipe</string>
 
     <string name="search_result">Search Result</string>
     <string name="insert">Insert Fridge Items</string>
 
-    <string name="spinner_prompt">Ingredient type</string>
+    <string name="add_fav">Added to your favorite recipes!</string>
+    <string name="remove_fav">Favorite recipe removed!</string>
     <array name="spn_list">
         <item>全榖根莖類</item>
         <item>蔬菜類</item>
@@ -62,5 +64,7 @@
         <item>低脂乳品類</item>
         <item>其他類</item>
     </array>
+
+    <string name="spinner_prompt">Ingredient type</string>
 
 </resources>
