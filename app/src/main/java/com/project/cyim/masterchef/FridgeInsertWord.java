@@ -68,7 +68,6 @@ public class FridgeInsertWord extends Fragment {
             }
         });
 
-
         return v;
     }
 

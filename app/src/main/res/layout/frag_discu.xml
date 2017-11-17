@@ -25,7 +25,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/camera"
@@ -61,7 +61,39 @@
         <ListView
             android:id="@+id/discuss_list"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="0.19"
+                android:background="white"
+                android:gravity="left"
+                android:inputType="textCapWords"
+                android:textColor="black"
+                android:hint="留言..."
+                android:textColorHint="@color/input_register_hint" />
+
+            <Button
+                android:id="@+id/insert"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:background="#ea4c88"
+                android:text="@string/add"
+                android:layout_below="@id/text"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>
