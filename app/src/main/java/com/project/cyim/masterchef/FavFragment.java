@@ -122,6 +122,7 @@ public class FavFragment extends Fragment{
                     item.put("TITLE", title);
                     item.put("AUTHOR", author);
                     item.put("THUMBNAIL", thumbnail);
+                    item.put("USERNAME", c.getString("fullname"));
                     item.put("ID", id);
 
                     result_list.add(item);

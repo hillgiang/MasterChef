@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,7 +13,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,12 +35,13 @@ public class GetRecipes extends AsyncTask<String, String, String> {
     RecyclerView.LayoutManager RecyclerViewLayoutManager;
     RecipeAdapter RecyclerViewHorizontalAdapter;
     LinearLayoutManager HorizontalLayout;
-    String SectionName;
+    String SectionName, order;
 
-    public GetRecipes(Context context, RecyclerView recyclerView, String SectionName) {
+    public GetRecipes(Context context, RecyclerView recyclerView, String SectionName, String order) {
         this.context = context;
         this.recyclerView = recyclerView;
         this.SectionName = SectionName;
+        this.order = order;
     }
 
     protected void onPreExecute(){
@@ -51,6 +52,7 @@ public class GetRecipes extends AsyncTask<String, String, String> {
         try {
             String ip = "http://140.135.113.99";
             String link = ip + "/GetAllRecipes.php";
+            String data = URLEncoder.encode("order", "UTF-8") + "=" + URLEncoder.encode(order, "UTF-8");
 
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
@@ -58,8 +60,8 @@ public class GetRecipes extends AsyncTask<String, String, String> {
             conn.setDoOutput(true);
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
-            //wr.write(data);
-            //wr.flush();
+            wr.write(data);
+            wr.flush();
 
             BufferedReader reader = new BufferedReader(new
                     InputStreamReader(conn.getInputStream()));

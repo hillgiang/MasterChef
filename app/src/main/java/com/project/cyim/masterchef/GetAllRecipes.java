@@ -105,8 +105,8 @@ public class GetAllRecipes extends Fragment {
             case R.id.action_write:
                 startActivity(new Intent(getActivity(), UploadRecipe.class));
                 return true;
-            case R.id.action_cart:
-                return true;
+            //case R.id.action_cart:
+                //return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

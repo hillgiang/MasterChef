@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 import java.util.ArrayList;
@@ -28,8 +29,8 @@ import android.content.Intent;
 public class UsersInfo extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private TextView textview;
-    private TextView fullname;
+    private TextView textview, fullname;
+    private ImageView avatar;
     private Button button01;
     SessionManagement session;
 
@@ -59,6 +60,7 @@ public class UsersInfo extends Fragment {
 
         textview = (TextView) v.findViewById(R.id.textView);
         fullname = (TextView) v.findViewById(R.id.author);
+        avatar = (ImageView) v.findViewById(R.id.list_image);
         button01 = (Button) v.findViewById(R.id.edit);
 
         button01.setOnClickListener(new Button.OnClickListener(){
@@ -73,7 +75,7 @@ public class UsersInfo extends Fragment {
         String email = user.get(SessionManagement.KEY_EMAIL);
         textview.setText(email);
 
-        new GetUserInfo(this, fullname).execute(email);
+        new GetUserInfo(this, fullname, avatar).execute(email);
 
         //所以現在email變數所存的就是賬號。
         //再把賬號名稱傳給GetMemberInfo.php。

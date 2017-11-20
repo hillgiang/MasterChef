@@ -3,6 +3,7 @@ package com.project.cyim.masterchef;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,9 @@ public class DiscuFrag extends Fragment{
     private ListView listview;
     Button insert;
     EditText item;
-    String ingredient;
     SessionManagement session;
+    String comment_str;
+    DiscuAdapter adapter;
 
     public DiscuFrag() {
         // Required empty public constructor
@@ -48,20 +50,18 @@ public class DiscuFrag extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.frag_discu, container, false);
-        listview = (ListView) v.findViewById(R.id.listview);
-        item = (EditText) v.findViewById(R.id.ingredient);
-        insert = (Button) v.findViewById(R.id.insert);
+        listview = (ListView) v.findViewById(R.id.discuss_list);
+        item = (EditText) v.findViewById(R.id.comment);
+        insert = (Button) v.findViewById(R.id.send_comment);
         session = new SessionManagement(getActivity());
-
-
         HashMap<String, String> user = session.getUserDetails();
-        final String email = user.get(SessionManagement.KEY_EMAIL);
+        final String userid = user.get(SessionManagement.KEY_ID);
         final int id = ((OnFragmentInteractionListener)getActivity()).recipe_id();
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ingredient = item.getText().toString();
-
+                comment_str = item.getText().toString();
+                new DiscuData(DiscuFrag.this, listview).execute("add", id + "", userid, comment_str);
             }
         });
 
@@ -118,6 +118,40 @@ public class DiscuFrag extends Fragment{
                 } catch (Exception e) {
                     return new String("Exception: " + e.getMessage());
                 }
+            } else if (task.equals("add")) {
+                try {
+                    String id = (String) arg0[1];
+                    String userid = (String) arg0[2];
+                    String comment = (String) arg0[3];
+
+                    String ip = "http://140.135.113.99";
+                    link = ip + "/RecipeComment.php?recipe="+
+                            URLEncoder.encode(id, "UTF-8") + "&user_id=" + URLEncoder.encode(userid, "UTF-8") + "&content=" + URLEncoder.encode(comment, "UTF-8");
+                    URL url = new URL(link);
+                    URLConnection conn = url.openConnection();
+
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write(link);
+                    wr.flush();
+
+                    BufferedReader reader = new BufferedReader(new
+                            InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                        break;
+                    }
+
+                    return sb.toString();
+                } catch (Exception e) {
+                    return new String("Exception: " + e.getMessage());
+                }
             }
             return null;
         }
@@ -133,7 +167,7 @@ public class DiscuFrag extends Fragment{
                         JSONObject c = reci.getJSONObject(i);
 
                         String username = c.getString("fullname");
-                        String time = c.getString("time");
+                        //String time = c.getString("time");
                         String content = c.getString("content");
                         String avatar = c.getString("avatar");
 
@@ -146,9 +180,12 @@ public class DiscuFrag extends Fragment{
                 } catch (final JSONException e) {
                 }
                 // item.setText(item2);
-                DiscuAdapter adapter;
                 adapter = new DiscuAdapter(getActivity(), result_list);
                 listview.setAdapter(adapter);
+            } else if (task.equals("add")) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.detach(context).attach(context).commit();
+                //adapter.notifyDataSetChanged();
             }
 
         }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,8 @@ import java.util.HashMap;
 
 public class StepFrag extends Fragment{
     ListView steps_list;
-
+    SessionManagement session;
+    String name;
     public StepFrag() {
         // Required empty public constructor
     }
@@ -51,6 +53,9 @@ public class StepFrag extends Fragment{
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.frag_step, container, false);
         steps_list = (ListView)v.findViewById(R.id.list);
+        session = new SessionManagement(getActivity());
+        HashMap<String, String> user = session.getUserDetails();
+        name = user.get(SessionManagement.KEY_EMAIL);
 
         int id = ((OnFragmentInteractionListener)getActivity()).recipe_id();
         new StepsData(this).execute(id + "");
@@ -77,6 +82,8 @@ public class StepFrag extends Fragment{
                 String link = ip + "/GetRecipe.php";
                 String data = URLEncoder.encode("id", "UTF-8") + "=" +
                         URLEncoder.encode(id, "UTF-8");
+                data += "&" + URLEncoder.encode("username", "UTF-8") + "=" +
+                        URLEncoder.encode(name, "UTF-8");
 
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();
@@ -114,6 +121,7 @@ public class StepFrag extends Fragment{
                 JSONObject c = reci.getJSONObject(0);
 
                 JSONArray steps = new JSONArray(c.getString("steps"));
+                Log.i("steps", steps.toString());
                 for ( int i = 0; i < steps.length(); i++ ) {
                     JSONObject stepobj = steps.getJSONObject(i);
                     HashMap<String, String> step = new HashMap<>();

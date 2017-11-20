@@ -28,12 +28,12 @@
                     android:orientation="vertical"
                     android:weightSum="1">
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/thumb"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_weight="0.19"
-                        app:srcCompat="@drawable/ic_action_camera" />
+                        app:srcCompat="@drawable/choose" />
 
                     <TextView
                         android:id="@+id/stepno"

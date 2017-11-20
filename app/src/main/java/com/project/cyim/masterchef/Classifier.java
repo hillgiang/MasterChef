@@ -72,6 +72,10 @@ public interface Classifier {
             return title;
         }
 
+        public String getChineseTitle() {
+            return chinese;
+        }
+
         public Float getConfidence() {
             return confidence;
         }
@@ -87,6 +91,13 @@ public interface Classifier {
         @Override
         public String toString() {
             String resultString = "";
+            if (title != null) {
+                resultString += chinese + " ";
+            }
+            if (confidence != null) {
+                resultString += String.format("(%.1f%%) ", confidence * 100.0f);
+            }
+            /**
             if (id != null) {
                 resultString += "[" + id + "] ";
             }
@@ -102,7 +113,7 @@ public interface Classifier {
             if (location != null) {
                 resultString += location + " ";
             }
-
+            **/
             return resultString.trim();
         }
     }

@@ -26,10 +26,10 @@
             android:layout_height="100dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="0.19"
-            android:background="white"
+            android:background="@color/white"
             android:gravity="left"
             android:inputType="textCapWords"
-            android:textColor="black"
+            android:textColor="#000"
             android:hint="留言..."
             android:textColorHint="@color/input_register_hint" />
 

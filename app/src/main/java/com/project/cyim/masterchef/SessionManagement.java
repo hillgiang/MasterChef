@@ -88,6 +88,7 @@ public class SessionManagement {
 
         // user email id
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+        user.put(KEY_ID, pref.getString(KEY_ID, null));
 
         // return user
         return user;

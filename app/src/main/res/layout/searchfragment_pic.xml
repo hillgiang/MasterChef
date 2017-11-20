@@ -19,22 +19,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:layout_marginTop="300dp"
         android:gravity="center"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageViewResult"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:padding="2dp" />
-
         <TextView
             android:id="@+id/textViewResult"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:fadeScrollbars="false"
             android:maxLines="15"
             android:scrollbars="vertical"
@@ -43,15 +37,32 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnDetectObject"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_gravity="bottom|center"
-        android:text="Detect Object"
-        android:background="@color/btn_login_bg"
-        android:textColor="@color/colorPrimary"
-        android:textAllCaps="false"
-        android:visibility="gone" />
+        android:weightSum="2">
+        <Button
+            android:id="@+id/btnDetectObject"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/detect_object"
+            android:background="@color/btn_login_bg"
+            android:textColor="@color/colorPrimary"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"/>
+        <Button
+            android:id="@+id/btnSearchObject"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/tab_search"
+            android:background="@color/btn_login_bg"
+            android:textColor="@color/colorPrimary"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"/>
+    </LinearLayout>
+
 
 </FrameLayout>

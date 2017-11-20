@@ -76,7 +76,7 @@ public class FavAdapter extends BaseAdapter {
 
         // Setting all values in listview
         title.setText(recipe.get("TITLE"));
-        author.setText(recipe.get("AUTHOR"));
+        author.setText(recipe.get("USERNAME"));
         final String id = recipe.get("ID");
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

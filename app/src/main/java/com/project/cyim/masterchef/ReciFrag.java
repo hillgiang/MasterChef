@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,17 +109,19 @@ public class ReciFrag extends Fragment{
             ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
             try {
                 JSONArray reci = new JSONArray(result);
-                JSONObject c = reci.getJSONObject(0);
+                for (int i = 0; i < reci.length(); i++) {
+                    JSONObject c = reci.getJSONObject(i);
 
-                HashMap<String, String> item = new HashMap<>();
-                item.put("NAME", c.getString("ingredient"));
-                //item.put("WEIGHT", c.getString(""));
+                    HashMap<String, String> item = new HashMap<>();
+                    item.put("NAME", c.getString("ingredient"));
+                    item.put("WEIGHT", c.getString("weight"));
 
-                list.add(item);
+                    list.add(item);
+                }
             } catch (final JSONException e) {
                 e.printStackTrace();
             }
-
+            Log.i("ingredient", list.toString());
             IngredientAdapter adapter = new IngredientAdapter(getContext(), list);
             ingredient_list.setAdapter(adapter);
         }
@@ -145,7 +148,9 @@ public class ReciFrag extends Fragment{
             convertView = inflater.inflate(R.layout.ingredient_row, parent, false);
             HashMap<String, String> item = list.get(position);
             TextView name = (TextView) convertView.findViewById(R.id.name);
+            TextView weight = (TextView) convertView.findViewById(R.id.weight);
             name.setText(item.get("NAME"));
+            weight.setText(item.get("WEIGHT"));
             //TextView weight = (TextView) convertView.findViewById(R.id.weight);
             //weight.setText(item.get("WEIGHT"));
 

@@ -50,21 +50,21 @@ public class FridgeInsertWord extends Fragment {
         session = new SessionManagement(getActivity());
         item = (EditText) v.findViewById(R.id.ingredient);
         insert = (Button) v.findViewById(R.id.insert);
-        sp = (Spinner) v.findViewById(R.id.spn);
+        //sp = (Spinner) v.findViewById(R.id.spn);
 
         HashMap<String, String> user = session.getUserDetails();
         final String email = user.get(SessionManagement.KEY_EMAIL);
 
-        ArrayAdapter<CharSequence> nAdapter = ArrayAdapter.createFromResource(
-                getContext(), R.array.spn_list, android.R.layout.simple_spinner_item );
-        sp.setAdapter(nAdapter);
+        //ArrayAdapter<CharSequence> nAdapter = ArrayAdapter.createFromResource(
+                //getContext(), R.array.spn_list, android.R.layout.simple_spinner_item );
+        //sp.setAdapter(nAdapter);
 
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ingredient = item.getText().toString();
-                new  InsertFridge(FridgeInsertWord.this, "insert").execute( ingredient,email);
+                new InsertFridge(FridgeInsertWord.this, "insert").execute( ingredient,email);
             }
         });
 
@@ -124,9 +124,8 @@ public class FridgeInsertWord extends Fragment {
 
             protected void onPostExecute(String result) {
                 if (task.equals("insert")) {
-                    Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), UsersInfo.class);
-                    startActivity(intent);
+                    Toast.makeText(getContext(), "新增成功！", Toast.LENGTH_SHORT).show();
+
                 }
 
             }

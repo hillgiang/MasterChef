@@ -52,7 +52,7 @@ public class DiscuAdapter extends BaseAdapter {
 
         TextView username = (TextView)vi.findViewById(R.id.username); // userfullname
         ImageView avatar_image=(ImageView)vi.findViewById(R.id.avatar); // avatar image
-        TextView time = (TextView)vi.findViewById(R.id.time); // time
+        //TextView time = (TextView)vi.findViewById(R.id.time); // time
         ImageView more=(ImageView)vi.findViewById(R.id.more); // thumb image
         TextView content = (TextView)vi.findViewById(R.id.content); // content
 

@@ -64,6 +64,7 @@ public class SearchFragmentInWord extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                noresult.setText("");
                 return false;
             }
         });
@@ -81,6 +82,7 @@ public class SearchFragmentInWord extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                noresult.setText("");
                 return false;
             }
         });
@@ -185,11 +187,13 @@ public class SearchFragmentInWord extends Fragment {
                         String title = c.getString("recipes_name");
                         String author = c.getString("user_id");
                         String thumbnail = c.getString("thumbnail");
+                        String id = c.getString("recipes_id");
 
                         item.put("TITLE", title);
                         item.put("AUTHOR", author);
                         item.put("THUMBNAIL", thumbnail);
-
+                        item.put("USERNAME", c.getString("fullname"));
+                        item.put("ID", id);
                         result_list.add(item);
                     }
 

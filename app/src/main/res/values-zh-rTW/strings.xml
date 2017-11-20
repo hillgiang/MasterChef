@@ -42,7 +42,7 @@
     <string name="noresult">沒有任何結果</string>
     <string name="upload">上傳</string>
     <string name="toggle_camera">Toggle Camera</string>
-    <string name="detect_object">Detect Object</string>
+    <string name="detect_object">圖片辨識</string>
 
     <string name="delete">刪除</string>
     <string name="add">新增</string>
@@ -56,10 +56,15 @@
 
 
     <string name="spinner_prompt">食材類別</string>
-
-
+    <string name="save">儲存食譜</string>
+    <string name="publish">發佈食譜</string>
     <string name="add_fav">已經加入收藏食譜！</string>
     <string name="remove_fav">已經將這食譜從收藏食譜移除！</string>
+    <string name="fan">粉絲</string>
+    <string name="recipe">食譜</string>
+    <string name="add_follow">追蹤成功！</string>
+    <string name="remove_follow">取消追蹤！</string>
+    <string name="ok">確定</string>
 
     <array name="spn_list">
         <item>全榖根莖類</item>

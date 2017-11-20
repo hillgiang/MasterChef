@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,10 +57,12 @@ public class LazyAdapter extends BaseAdapter {
 
         HashMap<String, String> recipe = new HashMap<String, String>();
         recipe = data.get(position);
+        final int id = Integer.parseInt(recipe.get("ID"));
+        final String titlestr = recipe.get("TITLE");
 
         // Setting all values in listview
         title.setText(recipe.get("TITLE"));
-        author.setText(recipe.get("AUTHOR"));
+        author.setText(recipe.get("USERNAME"));
 
         String thumb = recipe.get("THUMBNAIL");
         if (thumb.equals(""))
@@ -72,6 +75,16 @@ public class LazyAdapter extends BaseAdapter {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(thumb_image);
         //imageLoader.DisplayImage(recipe.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
+        vi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, Food.class);
+                intent.putExtra("RECIPE_ID", id);
+                intent.putExtra("RECIPE_TITLE", titlestr);
+                activity.startActivity(intent);
+            }
+        });
+
         return vi;
     }
 }

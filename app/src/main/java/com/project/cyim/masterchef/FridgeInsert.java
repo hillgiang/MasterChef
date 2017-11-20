@@ -52,7 +52,7 @@ public class FridgeInsert extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         FridgeInsert.ViewPagerAdapter adapter = new FridgeInsert.ViewPagerAdapter(getSupportFragmentManager() );
         adapter.addFragment(new FridgeInsertWord(), "文字新增");
-        adapter.addFragment(new FridgeInsertPic(), "圖片新增");
+        //adapter.addFragment(new FridgeInsertPic(), "圖片新增");
         viewPager.setAdapter(adapter);
     }
 

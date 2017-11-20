@@ -118,10 +118,13 @@ public class Follow extends Fragment {
                         JSONObject c = reci.getJSONObject(i);
 
                         String follow = c.getString("username");
-                        String thumbnail = c.getString("thumbnail");
+                        String thumbnail = c.getString("avatar");
+                        String id = c.getString("user_id");
 
                         item.put("USER", follow);
+                        item.put("FULLNAME", c.getString("fullname"));
                         item.put("THUMBNAIL", thumbnail);
+                        item.put("ID", id);
                         result_list.add(item);
                     }
 
