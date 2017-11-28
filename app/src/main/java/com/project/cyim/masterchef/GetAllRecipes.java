@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class GetAllRecipes extends Fragment {
     RecyclerView my_recycler_view;
+    RecyclerView mRecyclerViewType;
+   // private ArrayList<Integer> mDatas;
     View ChildView ;
     int RecyclerViewItemPosition ;
 
@@ -35,16 +37,35 @@ public class GetAllRecipes extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.recipes, container, false);
+
+        ArrayList<String> mDatas = new ArrayList<>();
+        mDatas.add("米飯、麵類主食");
+        mDatas.add("開胃菜、沙拉");
+        mDatas.add("肉類");
+        mDatas.add("海鮮");
+        mDatas.add("中華料理");
+        mDatas.add("甜點");
+        mDatas.add("鍋、湯");
         //new GetRecipes(getActivity(), recyclerView).execute();
+        mRecyclerViewType = (RecyclerView) v.findViewById(R.id.my_recycler_view_type);
+        mRecyclerViewType.setHasFixedSize(true);
+        RecipeTypeAdapter adapter2 = new RecipeTypeAdapter(getActivity(), mDatas);
+        mRecyclerViewType.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        mRecyclerViewType.setAdapter(adapter2);
+
         ArrayList<String> cata = new ArrayList<>();
         cata.add("熱門");
         cata.add("最新");
+
         //RecyclerView to show the list in vertical order
         my_recycler_view = (RecyclerView) v.findViewById(R.id.my_recycler_view);
         my_recycler_view.setHasFixedSize(true);

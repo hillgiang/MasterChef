@@ -30,6 +30,7 @@
         <activity android:name=".FridgeInsert"/>
         <activity android:name=".UploadRecipe"/>
         <activity android:name=".MyFridgeSearch"/>
+        <activity android:name=".GetType"/>
     </application>
 
 </manifest>

@@ -65,6 +65,7 @@
         <item>其他類</item>
     </array>
 
+
     <string name="spinner_prompt">Ingredient type</string>
 
 </resources>
