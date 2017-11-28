@@ -53,7 +53,8 @@
 
     <string name="search_result">Search Result</string>
     <string name="insert">Insert Fridge Items</string>
-
+    <string name="save">Save</string>
+    <string name="publish">Publish</string>
     <string name="add_fav">Added to your favorite recipes!</string>
     <string name="remove_fav">Favorite recipe removed!</string>
     <array name="spn_list">
@@ -67,5 +68,10 @@
 
 
     <string name="spinner_prompt">Ingredient type</string>
+    <string name="fan">Follower</string>
+    <string name="recipe">Recipes</string>
+    <string name="add_follow">Follow Success!</string>
+    <string name="remove_follow">Unfollow Success!</string>
+    <string name="ok">OK</string>
 
 </resources>

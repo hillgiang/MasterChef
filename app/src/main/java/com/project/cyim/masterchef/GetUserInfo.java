@@ -8,6 +8,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import android.content.Context;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -15,16 +16,25 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by user on 2017/8/10.
  */
 
 public class GetUserInfo extends AsyncTask<String, String, String> {
     private UsersInfo context;
+    private ImageView avatar;
     private TextView userinfo;
 
-    public GetUserInfo(UsersInfo context, TextView userinfo) {
+    public GetUserInfo(UsersInfo context, TextView userinfo, ImageView avatar) {
         this.userinfo = userinfo;
+        this.avatar = avatar;
         this.context = context;
     }
 
@@ -68,10 +78,22 @@ public class GetUserInfo extends AsyncTask<String, String, String> {
         if (result.contains("Exception:") == true) {
             this.userinfo.setText(result);
         } else {
-            String[] temp = null;
-            temp = result.split(",");
-            this.userinfo.setText("名字 : "+temp[4]+"\n冰箱RPi : "+temp[3]);
+            try {
+                JSONArray reci = new JSONArray(result);
+                for (int i = 0; i < reci.length(); i++) {
+                    HashMap<String, String> item = new HashMap<>();
+                    JSONObject c = reci.getJSONObject(i);
 
+                    this.userinfo.setText("名字 : "+c.getString("fullname")+"\n粉絲 : "+c.getString("follower").split(",").length);
+                    Glide.with(context)
+                            .load(c.getString("avatar"))
+                            .crossFade()
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(avatar);
+                }
+
+            } catch (final JSONException e) {}
+            //this.userinfo.setText("名字 : "+temp[4]+"\n冰箱RPi : "+temp[3]);
         }
     }
 }

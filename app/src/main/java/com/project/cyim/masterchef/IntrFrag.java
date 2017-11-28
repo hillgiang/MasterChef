@@ -1,13 +1,16 @@
 package com.project.cyim.masterchef;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,10 +36,11 @@ import java.util.HashMap;
 
 public class IntrFrag extends Fragment{
     OnFragmentInteractionListener mListener;
-    TextView introtext, title, author;
-    ImageView thumbnail;
+    TextView introtext, title, author, favorite, comment;
+    ImageView thumbnail, avatar;
     ImageView like;
     SessionManagement session;
+    String userid, username;
 
     public IntrFrag() {
         // Required empty public constructor
@@ -59,8 +63,12 @@ public class IntrFrag extends Fragment{
         introtext = (TextView)v.findViewById(R.id.introtext);
         title = (TextView)v.findViewById(R.id.title);
         author = (TextView)v.findViewById(R.id.username);
+        favorite = (TextView)v.findViewById(R.id.liken);
+        comment = (TextView)v.findViewById(R.id.disn);
         thumbnail = (ImageView)v.findViewById(R.id.thumbnail);
+        avatar = (ImageView)v.findViewById(R.id.avatar);
         like = (ImageView)v.findViewById(R.id.likepic);
+        RelativeLayout author_lay = (RelativeLayout)v.findViewById(R.id.author_lay);
 
         final int id = ((OnFragmentInteractionListener)getActivity()).recipe_id();
         new RecipeData(this).execute(id + "", "null", name);
@@ -69,6 +77,16 @@ public class IntrFrag extends Fragment{
             @Override
             public void onClick(View view) {
                 new RecipeData(IntrFrag.this).execute(id + "", "add_fav", name);
+            }
+        });
+
+        author_lay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MemberPage.class);
+                intent.putExtra("USER_ID", userid);
+                intent.putExtra("USERNAME", username);
+                IntrFrag.this.startActivity(intent);
             }
         });
 
@@ -160,9 +178,14 @@ public class IntrFrag extends Fragment{
                     JSONArray reci = new JSONArray(result);
                     JSONObject c = reci.getJSONObject(0);
 
+                    userid = c.getString("user_id");
+                    username = c.getString("username");
+
                     introtext.setText(c.getString("content"));
                     title.setText(c.getString("recipes_name"));
-                    author.setText(c.getString("username"));
+                    author.setText(c.getString("fullname"));
+                    favorite.setText(c.getString("favorite"));
+                    comment.setText(c.getString("comment"));
                     if (c.getString("fav").equals("true"))
                         like.setColorFilter(ContextCompat.getColor(getContext(), R.color.red), android.graphics.PorterDuff.Mode.MULTIPLY);
                     else
@@ -179,6 +202,11 @@ public class IntrFrag extends Fragment{
                             .crossFade()
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(thumbnail);
+                    Glide.with(getContext())
+                            .load(c.getString("avatar"))
+                            .crossFade()
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(avatar);
 
                     //discuss.put("DISCUSS", );
                 } catch (final JSONException e) {
@@ -189,10 +217,14 @@ public class IntrFrag extends Fragment{
                     Toast.makeText(getContext(), R.string.add_fav, Toast.LENGTH_SHORT).show();
                     // change to red
                     like.setColorFilter(ContextCompat.getColor(getContext(), R.color.red), android.graphics.PorterDuff.Mode.MULTIPLY);
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.detach(context).attach(context).commit();
                 } else if (result.equals("removed")) {
                     Toast.makeText(getContext(), R.string.remove_fav, Toast.LENGTH_SHORT).show();
                     // change to gray
                     like.setColorFilter(ContextCompat.getColor(getContext(), R.color.input_register), android.graphics.PorterDuff.Mode.MULTIPLY);
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.detach(context).attach(context).commit();
                 }
             }
         }

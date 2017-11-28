@@ -1,18 +1,11 @@
 package com.project.cyim.masterchef;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,19 +19,19 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import static com.project.cyim.masterchef.R.layout.myfridge_search;
 
 /**
- * Created by user on 2017/8/8.
+ * Created by Hillary on 11/16/2017.
  */
-public class MyFridgeSearch extends AppCompatActivity {
+
+public class PicSearchResult extends AppCompatActivity {
     TextView noresult;
     //ArrayList<String> result_list = new ArrayList<String>();
     ListView listview;
 
-    public MyFridgeSearch() {
+    public PicSearchResult() {
         // Required empty public constructor
     }
 
@@ -68,11 +61,10 @@ public class MyFridgeSearch extends AppCompatActivity {
 
         //String str = R.string.search_result + ":  " + search_items;
         String str = "搜尋結果:  " + search_items;
-        str = str.substring(0, str.length() - 1); // remove last character
         TextView result = (TextView)findViewById(R.id.items) ;
         result.setText(str);
 
-        new SearchFridge(this, "search").execute(search_items);
+        new PicSearchResult.SearchFridge(this, "search").execute(search_items);
     }
 
     @Override
@@ -89,10 +81,10 @@ public class MyFridgeSearch extends AppCompatActivity {
     }
 
     public class SearchFridge extends AsyncTask<String, String, String> {
-        private MyFridgeSearch context;
+        private PicSearchResult context;
         String task;
 
-        public SearchFridge(MyFridgeSearch context, String task) {
+        public SearchFridge(PicSearchResult context, String task) {
             this.context = context;
             this.task = task;
         }
@@ -101,14 +93,14 @@ public class MyFridgeSearch extends AppCompatActivity {
         }
 
         protected String doInBackground(String... arg0) {
-           // String task = (String) arg0[0];
+            // String task = (String) arg0[0];
             String name = (String) arg0[0] ;
 
             if (task.equals("search")) {
-                String ingredient = (String) arg0[0];
+
                 try {
                     String ip = "http://140.135.113.99";
-                    String link = ip + "/SearchRecipeByIngredient.php?ingredient=" +
+                    String link = ip + "/SearchRecipeByName.php?recipes_name=" +
                             URLEncoder.encode(name, "UTF-8");
 
                     URL url = new URL(link);
@@ -158,15 +150,15 @@ public class MyFridgeSearch extends AppCompatActivity {
                         item.put("TITLE", title);
                         item.put("AUTHOR", author);
                         item.put("THUMBNAIL", thumbnail);
-                        item.put("USERNAME", c.getString("fullname"));
                         item.put("ID", id);
+                        item.put("USERNAME", c.getString("username"));
                         result_list.add(item);
                     }
 
                 } catch (final JSONException e) {
                 }
                 LazyAdapter adapter;
-                adapter = new LazyAdapter(MyFridgeSearch.this,result_list);
+                adapter = new LazyAdapter(PicSearchResult.this,result_list);
                 listview.setAdapter(adapter);
             } // else
 

@@ -31,6 +31,8 @@
         <activity android:name=".UploadRecipe"/>
         <activity android:name=".MyFridgeSearch"/>
         <activity android:name=".GetType"/>
+        <activity android:name=".PicSearchResult"/>
+        <activity android:name=".MemberPage"/>
     </application>
 
 </manifest>

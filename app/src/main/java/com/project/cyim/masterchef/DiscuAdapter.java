@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +19,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
  * Created by Hillary on 7/31/2017.
  */
 
-public class UserAdapter extends BaseAdapter {
+public class DiscuAdapter extends BaseAdapter {
 
     private Activity activity;
     private ArrayList<HashMap<String, String>> data;
     private static LayoutInflater inflater=null;
     //public ImageLoader imageLoader;
 
-    public UserAdapter(Activity a, ArrayList<HashMap<String, String>> d) {
+    public DiscuAdapter(Activity a, ArrayList<HashMap<String, String>> d) {
         activity = a;
         data=d;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -49,39 +48,33 @@ public class UserAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         if(convertView==null)
-            vi = inflater.inflate(R.layout.follow_list, null);
+            vi = inflater.inflate(R.layout.discuss_row, null);
 
-        TextView user = (TextView)vi.findViewById(R.id.user); // author
-        ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image); // thumb image
+        TextView username = (TextView)vi.findViewById(R.id.username); // userfullname
+        ImageView avatar_image=(ImageView)vi.findViewById(R.id.avatar); // avatar image
+        //TextView time = (TextView)vi.findViewById(R.id.time); // time
+        ImageView more=(ImageView)vi.findViewById(R.id.more); // thumb image
+        TextView content = (TextView)vi.findViewById(R.id.content); // content
 
         HashMap<String, String> recipe = new HashMap<String, String>();
         recipe = data.get(position);
 
         // Setting all values in listview
-        final String username = recipe.get("USER");
-        final String id = recipe.get("ID");
-        user.setText(recipe.get("FULLNAME"));
 
-        String thumb = recipe.get("THUMBNAIL");
-        if (thumb.equals("") || thumb.equals("null"))
-            thumb = R.drawable.foods + "";
-        if (thumb.indexOf("http") == -1)
-            thumb = "http://" + thumb;
+        username.setText(recipe.get("USERNAME"));
+        content.setText(recipe.get("CONTENT"));
+        String avatar = recipe.get("AVATAR");
+
+        if (avatar.equals(""))
+            avatar = R.drawable.foods + "";
+        if (avatar.indexOf("http") == -1)
+            avatar = "http://" + avatar;
         Glide.with(activity)
-                .load(thumb)
+                .load(avatar)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(thumb_image);
+                .into(avatar_image);
         //imageLoader.DisplayImage(recipe.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
-        vi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, MemberPage.class);
-                intent.putExtra("USER_ID", id);
-                intent.putExtra("USERNAME", username);
-                activity.startActivity(intent);
-            }
-        });
         return vi;
     }
 }

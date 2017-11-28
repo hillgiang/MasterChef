@@ -1,19 +1,13 @@
 package com.project.cyim.masterchef;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,20 +21,15 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
- * Created by user on 2017/8/8.
+ * Created by Hillary on 11/17/2017.
  */
-public class MyRecipes extends Fragment {
-    private ListView listview;
-    //List <Boolean> checkedlist = new ArrayList <Boolean>();
-    //List <String> list2 = new ArrayList <String>();
-    //boolean firsttime_del = true;
-    // TextView item;
-    SessionManagement session;
 
-    public MyRecipes() {
+public class MemberPageRecipeTab extends Fragment {
+    ListView recipes_list;
+
+    public MemberPageRecipeTab() {
         // Required empty public constructor
     }
 
@@ -53,22 +42,19 @@ public class MyRecipes extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.my_recipes, container, false);
-        listview = (ListView) v.findViewById(R.id.listview);
-        session = new SessionManagement(getActivity());
+        View v = inflater.inflate(R.layout.member_page_recipes, container, false);
+        recipes_list = (ListView)v.findViewById(R.id.recipe_list);
+        new RecipesData(this, recipes_list).execute("get", ((User)getActivity()).username());
 
-
-        HashMap<String, String> user = session.getUserDetails();
-        final String email = user.get(SessionManagement.KEY_EMAIL);
-        new RecipesData(this, listview).execute("get", email);
         return v;
     }
+
     class RecipesData extends AsyncTask<String, String, String> {
-        private MyRecipes context;
+        private MemberPageRecipeTab context;
         private ListView listview;
         String task;
 
-        public RecipesData(MyRecipes context, ListView listview) {
+        public RecipesData(MemberPageRecipeTab context, ListView listview) {
             this.context = context;
             this.listview = listview;
         }
@@ -123,7 +109,7 @@ public class MyRecipes extends Fragment {
                 ArrayList<HashMap<String, String>> result_list = new ArrayList<HashMap<String, String>>();
                 try {
                     JSONArray reci = new JSONArray(result);
-                    for (int i = reci.length()/2; i < reci.length(); i++) {
+                    for (int i = reci.length() / 2; i < reci.length(); i++) {
                         HashMap<String, String> item = new HashMap<>();
                         JSONObject c = reci.getJSONObject(i);
                         String title = c.getString("recipes_name");
@@ -134,16 +120,22 @@ public class MyRecipes extends Fragment {
                         item.put("TITLE", title);
                         item.put("AUTHOR", author);
                         item.put("THUMBNAIL", thumbnail);
-                        item.put("USERNAME", c.getString("fullname"));
                         item.put("ID", id);
+                        item.put("AVATAR", c.getString("avatar"));
+                        item.put("USERNAME", c.getString("username"));
+                        item.put("FAVORITE", c.getString("favorite"));
+                        if (c.has("comment"))
+                            item.put("COMMENT", c.getString("comment"));
+                        else
+                            item.put("COMMENT", "0");
                         result_list.add(item);
                     }
 
                 } catch (final JSONException e) {
                 }
                 // item.setText(item2);
-                LazyAdapter adapter;
-                adapter = new LazyAdapter(getActivity(), result_list);
+                LargeRecipeCardAdapter adapter;
+                adapter = new LargeRecipeCardAdapter(getActivity(), result_list);
                 listview.setAdapter(adapter);
             }
 
