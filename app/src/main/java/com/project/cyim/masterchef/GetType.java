@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,7 +59,7 @@ public class GetType extends AppCompatActivity {
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
-                type = "-1";
+               // type = "-1";
             } else {
                 type = extras.getString("Type");
             }
@@ -66,8 +67,8 @@ public class GetType extends AppCompatActivity {
            type = (String)savedInstanceState.getSerializable("Type");
         }
 
-        String str = R.string.search_result + ":  " +  type ;
-        str = str.substring(0, str.length() - 1); // remove last character
+        String str = "食譜類別:  " +  type ;
+       // str = str.substring(0, str.length() - 1); // remove last character
         TextView result = (TextView)findViewById(R.id.items) ;
         result.setText(str);
 
@@ -107,7 +108,7 @@ public class GetType extends AppCompatActivity {
                 String types = (String) arg0[0];
                 try {
                     String ip = "http://140.135.113.99";
-                    String link = ip + "/GetType.php?types=" +
+                    String link = ip + "/GetType.php?type=" +
                             URLEncoder.encode(type, "UTF-8");
 
                     URL url = new URL(link);
@@ -152,10 +153,13 @@ public class GetType extends AppCompatActivity {
                         String title = c.getString("recipes_name");
                         String author = c.getString("user_id");
                         String thumbnail = c.getString("thumbnail");
+                        String id = c.getString("recipes_id");
 
                         item.put("TITLE", title);
                         item.put("AUTHOR", author);
                         item.put("THUMBNAIL", thumbnail);
+                        item.put("USERNAME", c.getString("fullname"));
+                        item.put("ID", id);
                         result_list.add(item);
                     }
 

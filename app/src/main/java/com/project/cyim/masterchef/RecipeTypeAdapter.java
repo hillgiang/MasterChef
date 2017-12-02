@@ -52,17 +52,7 @@ public class RecipeTypeAdapter extends RecyclerView.Adapter<RecipeTypeAdapter.Vi
         ViewHolder viewHolder = new ViewHolder(view);
         viewHolder.mImg = (Button) view
                 .findViewById(R.id.label);
-        final String type = viewHolder.mImg.getText().toString();
 
-                    viewHolder.mImg.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    //FragmentManager manager = getSupportFragmentManager();
-                        public void onClick(View v){
-                           Intent intent = new Intent(mContext, GetType.class);
-                           intent.putExtra("Type", type);
-                            mContext.startActivity(intent);
-                        }
-                    });
 
 
         return viewHolder;
@@ -74,6 +64,16 @@ public class RecipeTypeAdapter extends RecyclerView.Adapter<RecipeTypeAdapter.Vi
     public void onBindViewHolder(final ViewHolder viewHolder, final int i)
     {
         viewHolder.mImg.setText(mDatas.get(i));
+        final String type = viewHolder.mImg.getText().toString();
 
+        viewHolder.mImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //FragmentManager manager = getSupportFragmentManager();
+            public void onClick(View v){
+                Intent intent = new Intent(mContext, GetType.class);
+                intent.putExtra("Type", type);
+                mContext.startActivity(intent);
+            }
+        });
     }
 }
