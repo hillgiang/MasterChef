@@ -48,7 +48,7 @@ public class SearchFragment extends Fragment{
     private void setupViewPager(ViewPager viewPager) {
         SearchFragment.ViewPagerAdapter adapter = new SearchFragment.ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new SearchFragmentInWord(), "文字搜尋");
-        // adapter.addFragment(new SearchFragmentInPic(), "圖片搜尋");
+        adapter.addFragment(new SearchFragmentInPic(), "圖片搜尋");
         viewPager.setAdapter(adapter);
     }
 
