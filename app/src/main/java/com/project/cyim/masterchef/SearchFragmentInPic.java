@@ -1,6 +1,5 @@
 package com.project.cyim.masterchef;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,10 +40,9 @@ public class SearchFragmentInPic extends SearchFragment {
     private Classifier classifier;
     private Executor executor = Executors.newSingleThreadExecutor();
     private TextView textViewResult;
-    private Button btnDetectObject, btnSearchObject;
+    private Button btnDetectObject;
     private ImageView imageViewResult;
     private CameraView cameraView;
-    private String best;
 
     public SearchFragmentInPic() {
         // Required empty public constructor
@@ -61,12 +59,11 @@ public class SearchFragmentInPic extends SearchFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.searchfragment_pic, container, false);
         cameraView = (CameraView) v.findViewById(R.id.cameraView);
-        //imageViewResult = (ImageView) v.findViewById(R.id.imageViewResult);
+        imageViewResult = (ImageView) v.findViewById(R.id.imageViewResult);
         textViewResult = (TextView) v.findViewById(R.id.textViewResult);
         textViewResult.setMovementMethod(new ScrollingMovementMethod());
 
         btnDetectObject = (Button) v.findViewById(R.id.btnDetectObject);
-        btnSearchObject = (Button) v.findViewById(R.id.btnSearchObject);
 
         cameraView.setCameraListener(new CameraListener() {
             @Override
@@ -77,13 +74,11 @@ public class SearchFragmentInPic extends SearchFragment {
 
                 bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false);
 
-                //imageViewResult.setImageBitmap(bitmap);
+                imageViewResult.setImageBitmap(bitmap);
 
                 final List<Classifier.Recognition> results = classifier.recognizeImage(bitmap);
 
                 textViewResult.setText(results.toString());
-
-                best = results.get(0).getChineseTitle();
             }
         });
 
@@ -91,15 +86,6 @@ public class SearchFragmentInPic extends SearchFragment {
             @Override
             public void onClick(View v) {
                 cameraView.captureImage();
-            }
-        });
-
-        btnSearchObject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), PicSearchResult.class);
-                intent.putExtra("SEARCH_ITEMS", best);
-                getContext().startActivity(intent);
             }
         });
 

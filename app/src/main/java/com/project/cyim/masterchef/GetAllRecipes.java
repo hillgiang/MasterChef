@@ -63,6 +63,7 @@ public class GetAllRecipes extends Fragment {
         mRecyclerViewType.setAdapter(adapter2);
 
         ArrayList<String> cata = new ArrayList<>();
+        cata.add("人氣 MasterChef ");
         cata.add("熱門");
         cata.add("最新");
 

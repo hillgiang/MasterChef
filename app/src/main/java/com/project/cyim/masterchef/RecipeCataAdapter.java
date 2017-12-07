@@ -37,10 +37,12 @@ public class RecipeCataAdapter extends RecyclerView.Adapter<RecipeCataAdapter.It
         final String sectionName = dataList.get(i);
 
         itemRowHolder.itemTitle.setText(sectionName);
-        if (i == 0)
+        if (i == 1)
             new GetRecipes(mContext, itemRowHolder.recycler_view_list, sectionName, "hot").execute();
-        else if (i == 1)
+        else if (i == 2)
             new GetRecipes(mContext, itemRowHolder.recycler_view_list, sectionName, "lastest").execute();
+        else if (i== 0)
+           new GetMasterchef(mContext, itemRowHolder.recycler_view_list, sectionName, "masterchef").execute();
 
         itemRowHolder.btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
