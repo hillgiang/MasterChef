@@ -60,11 +60,37 @@
             android:id="@+id/comment"
             android:hint="輸入你的留言..."
             android:gravity="top|left"/>
-        <Button
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/send_comment"
-            android:text="@string/ok"/>
+            android:orientation="horizontal" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/send_comment"
+                android:text="@string/ok"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/choose_pic"
+                android:text="選擇照片"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/upload_pic"
+                android:text="上傳照片"/>
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="70dp"
+                android:layout_height="70dp" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <ListView
