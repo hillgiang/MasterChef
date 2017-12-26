@@ -6,5 +6,8 @@ package com.project.cyim.masterchef;
 
 public class Constants {
     public static final String UPLOAD_URL = "http://140.135.113.99/fileUpload.php";
-    public static final String IMAGES_URL = "http://140.135.113.99/getImages.php";
+    public static final String COMMENT = "http://140.135.113.99/RecipeComment.php";
+    public static final String AVATAR = "http://140.135.113.99/EditUser.php";
+    public static final String VIDEO_UPLOAD_URL = "http://140.135.113.99/videoUpload.php";
+    public static final String IMAGE_DIRECTORY_NAME = "MasterChef Video";
 }

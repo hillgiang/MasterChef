@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,10 +35,10 @@ import java.util.List;
  * 我的冰箱
  */
 public class MyFridge extends Fragment {
-    List<String> list = new ArrayList<String>();
+    List<String> list;
     private ListView listview;
-    List <Boolean> checkedlist = new ArrayList <Boolean>();
-    List <String> list2 = new ArrayList <String>();
+    List <Boolean> checkedlist;
+    //List <String> list2 = new ArrayList <String>();
     Button delete;
     Button add;
     Button search;
@@ -62,6 +63,8 @@ public class MyFridge extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.my_fridge, container, false);
         //item = (TextView) v.findViewById(R.id.item);
+        list = new ArrayList<String>();
+        checkedlist = new ArrayList <Boolean>();
         listview = (ListView) v.findViewById(R.id.listview);
         session = new SessionManagement(getActivity());
         add = (Button) v.findViewById(R.id.add);
@@ -101,10 +104,20 @@ public class MyFridge extends Fragment {
                     String checkeditems = "";
                     for (int i = 0; i < size; i++)
                         if (!checkedlist.get(i)) {
+                            Log.i("list", list.toString());
                             checkeditems += list.get(i) + ","; //沒有要刪除
-                            list2.add(list.get(i));
+                            //list2.add(list.get(i));
                         }
-                    new FridgeData(MyFridge.this, listview).execute("delete", checkeditems, email);
+
+                    String checkeditems2 = null;
+                    Log.i("delete_frigde", checkeditems.toString());
+                    if (checkeditems.split("")[checkeditems.length()].equals(","))
+                        if (checkeditems != null && checkeditems.length() > 1) {
+                            checkeditems2 = checkeditems.substring(0, checkeditems.length() - 1);
+                        }
+
+                    Log.i("delete_frigde2", checkeditems2);
+                    new FridgeData(MyFridge.this, listview).execute("delete", checkeditems2, email);
                     //Toast.makeText(getContext(), checkeditems, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -259,13 +272,12 @@ public class MyFridge extends Fragment {
                 } catch (final JSONException e) {
                 }
                 // item.setText(item2);
+                Log.i("Fridge", list.toString());
                 adapter = new MyFridgeAdapter(getActivity(), list);
                 listview.setAdapter(adapter);
             } else if (task.equals("delete")) {
-                adapter.clear();
-                adapter.addAll(list2);
-                adapter.notifyDataSetChanged();
-                list = list2;
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.detach(context).attach(context).commit();
             }else if (task.equals("search")) {
                 Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
             }

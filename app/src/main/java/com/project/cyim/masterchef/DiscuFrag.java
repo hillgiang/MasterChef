@@ -54,10 +54,11 @@ public class DiscuFrag extends Fragment{
     SessionManagement session;
     String comment_str;
     DiscuAdapter adapter;
+    boolean havePic = false;
 
     // upload Image
-    ImageView thumbnail;
-    Button buttonChoose, buttonUpload;
+    //ImageView thumbnail;
+    //Button buttonChoose;
     private JSONObject image;
 
     //Image request code
@@ -86,9 +87,8 @@ public class DiscuFrag extends Fragment{
         listview = (ListView) v.findViewById(R.id.discuss_list);
         item = (EditText) v.findViewById(R.id.comment);
         insert = (Button) v.findViewById(R.id.send_comment);
-        buttonChoose = (Button) v.findViewById(R.id.choose_pic);
-        buttonUpload = (Button) v.findViewById(R.id.upload_pic);
-        thumbnail = (ImageView)v.findViewById(R.id.thumbnail);
+        //buttonChoose = (Button) v.findViewById(R.id.choose_pic);
+        //thumbnail = (ImageView)v.findViewById(R.id.thumbnail);
 
         session = new SessionManagement(getActivity());
         HashMap<String, String> user = session.getUserDetails();
@@ -98,30 +98,21 @@ public class DiscuFrag extends Fragment{
             @Override
             public void onClick(View view) {
                 comment_str = item.getText().toString();
-                new DiscuData(DiscuFrag.this, listview).execute("add", id + "", userid, comment_str);
+                if (!havePic)
+                    new DiscuData(DiscuFrag.this, listview).execute("add", id + "", userid, comment_str);
+                else
+                    uploadMultipart(id+"", userid, comment_str);
+
             }
         });
 
-        buttonChoose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showFileChooser();
-            }
-        });
-
-        buttonUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                uploadMultipart();
-            }
-        });
 
         new DiscuFrag.DiscuData(this, listview).execute("get", id + "");
 
         return v;
     }
 
-    public void uploadMultipart() {
+    public void uploadMultipart(String recipeid, String userid, String comment) {
         //getting the actual path of the image
         String path = getPath(filePath);
 
@@ -130,14 +121,17 @@ public class DiscuFrag extends Fragment{
             String uploadId = UUID.randomUUID().toString();
 
             //Creating a multi part request
-            new MultipartUploadRequest(this, uploadId, Constants.UPLOAD_URL)
+            new MultipartUploadRequest(getContext(), uploadId, Constants.COMMENT)
                     .addFileToUpload(path, "image") //Adding file
+                    .addParameter("recipe", recipeid)
+                    .addParameter("user_id", userid)
+                    .addParameter("content", comment)
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
 
         } catch (Exception exc) {
-            Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), exc.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -155,11 +149,11 @@ public class DiscuFrag extends Fragment{
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            havePic = true;
             filePath = data.getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
-                thumbnail.setImageBitmap(bitmap);
-                ((UploadFragmentInteractionListener)getActivity()).add("THUMBNAIL", getPath(filePath));
+                //thumbnail.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -207,7 +201,8 @@ public class DiscuFrag extends Fragment{
                     String id = (String) arg0[1];
 
                     String ip = "http://140.135.113.99";
-                    link = ip + "/RecipeComment.php?recipe="+
+                    link = ip + "/RecipeComment.php";
+                    data = URLEncoder.encode("recipe", "UTF-8") + "=" +
                             URLEncoder.encode(id, "UTF-8") ;
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
@@ -215,7 +210,7 @@ public class DiscuFrag extends Fragment{
                     conn.setDoOutput(true);
                     OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
-                    wr.write(link);
+                    wr.write(data);
                     wr.flush();
 
                     BufferedReader reader = new BufferedReader(new
@@ -242,15 +237,20 @@ public class DiscuFrag extends Fragment{
                     String comment = (String) arg0[3];
 
                     String ip = "http://140.135.113.99";
-                    link = ip + "/RecipeComment.php?recipe="+
-                            URLEncoder.encode(id, "UTF-8") + "&user_id=" + URLEncoder.encode(userid, "UTF-8") + "&content=" + URLEncoder.encode(comment, "UTF-8");
+                    link = ip + "/RecipeComment.php";
+                    data = URLEncoder.encode("recipe", "UTF-8") + "=" +
+                            URLEncoder.encode(id, "UTF-8") ;
+                    data += "&" + URLEncoder.encode("user_id", "UTF-8") + "=" +
+                            URLEncoder.encode(userid, "UTF-8");
+                    data += "&" + URLEncoder.encode("content", "UTF-8") + "=" +
+                            URLEncoder.encode(comment, "UTF-8");
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
 
                     conn.setDoOutput(true);
                     OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
-                    wr.write(link);
+                    wr.write(data);
                     wr.flush();
 
                     BufferedReader reader = new BufferedReader(new

@@ -9,22 +9,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import android.widget.EditText;
 import android.content.Context;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by user on 2017/8/21.
  */
 public class EditGetUser extends AsyncTask<String, String, String> {
     private Context context;
     private EditText user;
+    private ImageView avatar;
 
-    public EditGetUser(Edituser context, EditText user) {
+    public EditGetUser(Edituser context, EditText user, ImageView avatar) {
         this.user = user;
         this.context = context;
+        this.avatar = avatar;
     }
     protected void onPreExecute(){
     }
@@ -64,9 +75,24 @@ public class EditGetUser extends AsyncTask<String, String, String> {
         if (result.contains("Exception:") == true) {
             this.user.setText(result);
         } else {
-            String[] temp = null;
-            temp = result.split(",");
-            this.user.setText(temp[4]);
+            try {
+                JSONArray reci = new JSONArray(result);
+                for (int i = 0; i < reci.length(); i++) {
+                    HashMap<String, String> item = new HashMap<>();
+                    JSONObject c = reci.getJSONObject(i);
+                    this.user.setText(c.getString("fullname"));
+                    String thumb = c.getString("avatar");
+                    if (thumb.equals(""))
+                        thumb = R.drawable.member + "";
+                    if (thumb.indexOf("http") == -1)
+                        thumb = "http://" + thumb;
+                    Glide.with(context)
+                            .load(thumb)
+                            .crossFade()
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(avatar);
+                }
+            } catch (final JSONException e) {}
         }
     }
 }

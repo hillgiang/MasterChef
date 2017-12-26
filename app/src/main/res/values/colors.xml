@@ -18,5 +18,6 @@
     <color name="btn_logut_bg">#ff6861</color>
     <color name="white_trans">#99FFFFFF</color>
     <color name="red">#f73131</color>
+    <color name="action_bar">#1f2649</color>
 
 </resources>

@@ -85,8 +85,13 @@ public class GetUserInfo extends AsyncTask<String, String, String> {
                     JSONObject c = reci.getJSONObject(i);
 
                     this.userinfo.setText("名字 : "+c.getString("fullname")+"\n粉絲 : "+c.getString("follower").split(",").length);
+                    String thumb = c.getString("avatar");
+                    if (thumb.equals(""))
+                        thumb = R.drawable.member + "";
+                    if (thumb.indexOf("http") == -1)
+                        thumb = "http://" + thumb;
                     Glide.with(context)
-                            .load(c.getString("avatar"))
+                            .load(thumb)
                             .crossFade()
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(avatar);

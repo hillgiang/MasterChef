@@ -24,6 +24,7 @@
 
     <string name="myfridge">我的冰箱</string>
     <string name="myrecipes">我的食譜</string>
+    <string name="myvideo">我的影片</string>
     <string name="follow">追蹤</string>
 
     <string name="logout_text">登出</string>
@@ -65,6 +66,15 @@
     <string name="add_follow">追蹤成功！</string>
     <string name="remove_follow">取消追蹤！</string>
     <string name="ok">確定</string>
+    <string name="choose_pic">選擇照片</string>
+    <string name="change_success">成功更改使用者資訊</string>
+    <string name="changephoto">選擇圖片...</string>
+    <string name="insert_word">文字新增</string>
+    <string name="insert_video">影片新增</string>
+    <string name="insert_ask">你想要用什麼方式新增呢？</string>
+    <string name="title">食譜名稱</string>
+    <string name="upload_complete">影片上傳成功</string>
+    <string name="video">影片</string>
 
     <array name="spn_list">
         <item>全榖根莖類</item>

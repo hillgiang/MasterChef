@@ -111,6 +111,7 @@ public class GetRecipes extends AsyncTask<String, String, String> {
 
                 // adding each child node to HashMap key => value
                 reci2.put(KEY_ID, id);
+                reci2.put(KEY_AUTHOR, c.getString("fullname"));
                 reci2.put(KEY_TITLE, title);
                 reci2.put(KEY_THUMBNAIL, thumbnail);
 

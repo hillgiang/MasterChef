@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -33,6 +35,9 @@
         <activity android:name=".GetType"/>
         <activity android:name=".PicSearchResult"/>
         <activity android:name=".MemberPage"/>
+        <activity android:name=".WordOrVideo"/>
+        <activity android:name=".UploadActivity"/>
+        <activity android:name=".VideoViewActivity"/>
     </application>
 
 </manifest>

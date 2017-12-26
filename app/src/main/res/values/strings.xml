@@ -25,6 +25,7 @@
 
     <string name="myfridge">My Fridge</string>
     <string name="myrecipes">My Recipes</string>
+    <string name="myvideo">My Video</string>
     <string name="follow">Follow</string>
 
     <string name="logout_text">Log Out</string>
@@ -73,5 +74,13 @@
     <string name="add_follow">Follow Success!</string>
     <string name="remove_follow">Unfollow Success!</string>
     <string name="ok">OK</string>
-
+    <string name="choose_pic">Choose Picture</string>
+    <string name="change_success">Information successfully changed</string>
+    <string name="changephoto">Choose photo...</string>
+    <string name="insert_word">BY TEXT</string>
+    <string name="insert_video">BY VIDEO</string>
+    <string name="insert_ask">Which way do you want to insert new Recipe?</string>
+    <string name="title">Recipe Title</string>
+    <string name="upload_complete">Video Successfully uploaded</string>
+    <string name="video">Video</string>
 </resources>

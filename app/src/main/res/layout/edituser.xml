@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/list_image"
+        android:id="@+id/avatar"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
@@ -25,7 +25,7 @@
             android:layout_marginTop="1dip"
             android:layout_marginBottom="15dp"
             android:background="@null"
-            android:text=" change the photo "
+            android:text="@string/changephoto"
             android:layout_alignLeft="@+id/list_image"
             android:layout_alignRight="@+id/list_image"
             android:layout_gravity="center_horizontal"

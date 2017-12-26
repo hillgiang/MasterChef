@@ -125,7 +125,6 @@ public class FridgeInsertWord extends Fragment {
             protected void onPostExecute(String result) {
                 if (task.equals("insert")) {
                     Toast.makeText(getContext(), "新增成功！", Toast.LENGTH_SHORT).show();
-
                 }
 
             }

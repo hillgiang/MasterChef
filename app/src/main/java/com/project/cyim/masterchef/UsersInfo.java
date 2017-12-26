@@ -92,6 +92,7 @@ public class UsersInfo extends Fragment {
         UsersInfo.ViewPagerAdapter adapter = new UsersInfo.ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new MyFridge(), getString(R.string.myfridge));
         adapter.addFragment(new MyRecipes(), getString(R.string.myrecipes));
+        adapter.addFragment(new MyVideo(), getString(R.string.myvideo));
         adapter.addFragment(new Follow(), getString(R.string.follow));
         viewPager.setAdapter(adapter);
     }

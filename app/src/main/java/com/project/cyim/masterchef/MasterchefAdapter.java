@@ -25,7 +25,7 @@ public class MasterchefAdapter extends RecyclerView.Adapter<MasterchefAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, author;
         public ImageView thumbnail;
-        public int id;
+        public String id;
         String title_str;
 
         public MyViewHolder(View view) {
@@ -65,7 +65,7 @@ public class MasterchefAdapter extends RecyclerView.Adapter<MasterchefAdapter.My
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recipes_card, parent, false);
+                .inflate(R.layout.masterchef_card, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -73,10 +73,10 @@ public class MasterchefAdapter extends RecyclerView.Adapter<MasterchefAdapter.My
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         HashMap<String, String> masterchef = list.get(position);
-        holder.title_str = masterchef.get(GetMasterchef.KEY_AUTHOR);
-        holder.title.setText(holder.title_str);
+        holder.title_str = masterchef.get(GetMasterchef.KEY_TITLE);
+        holder.title.setText(masterchef.get(GetMasterchef.KEY_AUTHOR));
         holder.author.setText(masterchef.get(GetMasterchef.KEY_TITLE));
-        holder.id = Integer.parseInt(masterchef.get(GetMasterchef.KEY_ID));
+        holder.id = masterchef.get(GetMasterchef.KEY_ID);
 
         // loading album cover using Glide library
         Glide.with(mContext)

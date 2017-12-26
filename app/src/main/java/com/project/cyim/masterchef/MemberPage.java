@@ -59,7 +59,6 @@ public class MemberPage extends AppCompatActivity implements User {
         HashMap<String, String> user = session.getUserDetails();
         final String email = user.get(SessionManagement.KEY_EMAIL);
         my_id = user.get(SessionManagement.KEY_ID);
-        Log.i("aaa", my_id);
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         setupViewPager(viewPager);
@@ -103,6 +102,7 @@ public class MemberPage extends AppCompatActivity implements User {
     private void setupViewPager(ViewPager viewPager) {
         adapter = new MemberPage.ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MemberPageRecipeTab(), getString(R.string.recipe));
+        adapter.addFragment(new MemberPageVideoTab(), getString(R.string.video));
         adapter.addFragment(new MemberPageFanTab(), getString(R.string.fan));
         viewPager.setAdapter(adapter);
     }
@@ -241,7 +241,7 @@ public class MemberPage extends AppCompatActivity implements User {
         }
 
         protected void onPostExecute(String result) {
-
+            Log.i("follow", result);
             if ( task.equals("get") ){
                 try {
                     JSONArray reci = new JSONArray(result);
