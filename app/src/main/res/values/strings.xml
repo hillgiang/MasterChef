@@ -2,12 +2,85 @@
     <string name="app_name">MasterChef</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="hint_name">Fullname</string>
+    <string name="hint_name">Full Name</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_register">REGISTER</string>
     <string name="btn_link_to_register">Not a member? Sign up now.</string>
-    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="btn_link_to_login">Already registered! Login Me.</string>
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
-    <string name="name">Fullname</string>
+    <string name="name">Full Name</string>
+    <string name="search_hint">Search for recipes</string>
+    <string name="action_write">New Recipes</string>
+    <string name="action_more">More</string>
+    <string name="cart">Cart</string>
+    <string name="edit">Edit your profile</string>
+    <string name="option">Options</string>
+    <string name="ididit">I did it!</string>
+
+    <string name="tab_home">Home</string>
+    <string name="tab_search">Search</string>
+    <string name="tab_fav">Favorites</string>
+    <string name="tab_member">Member Info</string>
+
+    <string name="myfridge">My Fridge</string>
+    <string name="myrecipes">My Recipes</string>
+    <string name="myvideo">My Video</string>
+    <string name="follow">Follow</string>
+
+    <string name="logout_text">Log Out</string>
+    <string name="language_text">Language</string>
+    <string name="aboutus_text">About Us</string>
+
+    <string name="select_language">Select language</string>
+    <string name="chinese">Chinese</string>
+    <string name="english">English</string>
+
+    <string name="intro">About</string>
+    <string name="ingredient">Ingredients</string>
+    <string name="step">Directions</string>
+    <string name="discuss">Comments</string>
+
+    <string name="noresult">Can\'t find anything</string>
+    <string name="upload">Upload</string>
+    <string name="toggle_camera">Toggle Camera</string>
+    <string name="detect_object">Detect Object</string>
+
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>
+
+
+    <string name="newrecipe">New recipe</string>
+
+    <string name="search_result">Search Result</string>
+    <string name="insert">Insert Fridge Items</string>
+    <string name="save">Save</string>
+    <string name="publish">Publish</string>
+    <string name="add_fav">Added to your favorite recipes!</string>
+    <string name="remove_fav">Favorite recipe removed!</string>
+    <array name="spn_list">
+        <item>全榖根莖類</item>
+        <item>蔬菜類</item>
+        <item>蛋豆魚肉類</item>
+        <item>水果類</item>
+        <item>低脂乳品類</item>
+        <item>其他類</item>
+    </array>
+
+
+    <string name="spinner_prompt">Ingredient type</string>
+    <string name="fan">Follower</string>
+    <string name="recipe">Recipes</string>
+    <string name="add_follow">Follow Success!</string>
+    <string name="remove_follow">Unfollow Success!</string>
+    <string name="ok">OK</string>
+    <string name="choose_pic">Choose Picture</string>
+    <string name="change_success">Information successfully changed</string>
+    <string name="changephoto">Choose photo...</string>
+    <string name="insert_word">BY TEXT</string>
+    <string name="insert_video">BY VIDEO</string>
+    <string name="insert_ask">Which way do you want to insert new Recipe?</string>
+    <string name="title">Recipe Title</string>
+    <string name="upload_complete">Video Successfully uploaded</string>
+    <string name="video">Video</string>
 </resources>

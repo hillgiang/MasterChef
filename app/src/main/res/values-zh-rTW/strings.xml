@@ -1,0 +1,87 @@
+<resources>
+    <string name="app_name">廚神當道</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">密碼</string>
+    <string name="hint_name">姓名</string>
+    <string name="btn_login">登入</string>
+    <string name="btn_register">註冊</string>
+    <string name="btn_link_to_register">還沒註冊？請馬上註冊！</string>
+    <string name="btn_link_to_login">已經註冊了？請登入！</string>
+    <string name="welcome">Welcome</string>
+    <string name="name">姓名</string>
+    <string name="search_hint">食譜搜尋</string>
+    <string name="action_write">新增食譜</string>
+    <string name="action_more">更多</string>
+    <string name="cart">購物車</string>
+    <string name="edit">編輯你的資訊</string>
+    <string name="option">設定</string>
+    <string name="ididit">跟著做</string>
+
+    <string name="tab_home">逛食譜</string>
+    <string name="tab_search">搜尋</string>
+    <string name="tab_fav">收藏</string>
+    <string name="tab_member">會員管理</string>
+
+    <string name="myfridge">我的冰箱</string>
+    <string name="myrecipes">我的食譜</string>
+    <string name="myvideo">我的影片</string>
+    <string name="follow">追蹤</string>
+
+    <string name="logout_text">登出</string>
+    <string name="language_text">語言</string>
+    <string name="aboutus_text">關於我們</string>
+
+    <string name="select_language">語言選擇</string>
+    <string name="chinese">中文</string>
+    <string name="english">英文</string>
+
+    <string name="intro">簡介</string>
+    <string name="ingredient">食材</string>
+    <string name="step">步驟</string>
+    <string name="discuss">討論</string>
+
+    <string name="noresult">沒有任何結果</string>
+    <string name="upload">上傳</string>
+    <string name="toggle_camera">Toggle Camera</string>
+    <string name="detect_object">圖片辨識</string>
+
+    <string name="delete">刪除</string>
+    <string name="add">新增</string>
+
+
+    <string name="newrecipe">新增食譜</string>
+
+
+    <string name="search_result">搜尋結果</string>
+    <string name="insert">新增食材</string>
+
+
+    <string name="spinner_prompt">食材類別</string>
+    <string name="save">儲存食譜</string>
+    <string name="publish">發佈食譜</string>
+    <string name="add_fav">已經加入收藏食譜！</string>
+    <string name="remove_fav">已經將這食譜從收藏食譜移除！</string>
+    <string name="fan">粉絲</string>
+    <string name="recipe">食譜</string>
+    <string name="add_follow">追蹤成功！</string>
+    <string name="remove_follow">取消追蹤！</string>
+    <string name="ok">確定</string>
+    <string name="choose_pic">選擇照片</string>
+    <string name="change_success">成功更改使用者資訊</string>
+    <string name="changephoto">選擇圖片...</string>
+    <string name="insert_word">文字新增</string>
+    <string name="insert_video">影片新增</string>
+    <string name="insert_ask">你想要用什麼方式新增呢？</string>
+    <string name="title">食譜名稱</string>
+    <string name="upload_complete">影片上傳成功</string>
+    <string name="video">影片</string>
+
+    <array name="spn_list">
+        <item>全榖根莖類</item>
+        <item>蔬菜類</item>
+        <item>蛋豆魚肉類</item>
+        <item>水果類</item>
+        <item>低脂乳品類</item>
+        <item>其他類</item>
+    </array>
+</resources>

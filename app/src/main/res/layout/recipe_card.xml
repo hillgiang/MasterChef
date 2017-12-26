@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.34"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:layout_margin="10dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.11"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/member" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.47"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/recipes_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="黃金蛋炒飯"
+                android:textColor="#000"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recipes_title"
+                android:layout_weight="0.15"
+                android:text="小當家"
+                android:textColor="#000"
+                android:textSize="15dp"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/pic"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="0.77"
+        app:srcCompat="@drawable/foods"
+        android:layout_marginTop="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/piclay"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/likepic"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            app:srcCompat="@drawable/whiteheart"
+            android:tint="@color/input_register"/>
+
+        <TextView
+            android:id="@+id/liken"
+            android:layout_width="50dip"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="6,120"
+            android:textSize="18dp"
+            android:layout_weight="0.05" />
+
+        <ImageView
+            android:id="@+id/dispic"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            app:srcCompat="@drawable/ic_action_discuss" />
+
+        <TextView
+            android:id="@+id/disn"
+            android:layout_width="50dip"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="4,156"
+            android:textSize="18dp"/>
+        <!--
+        <ImageView
+            android:id="@+id/sharepic"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            app:srcCompat="@drawable/ic_action_camera" />
+
+        <TextView
+            android:id="@+id/sharen"
+            android:layout_width="50dip"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="2,017"
+            android:textSize="18dp" />
+        -->
+
+    </LinearLayout>
+
+</LinearLayout>

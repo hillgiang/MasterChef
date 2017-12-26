@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DiscuFrag"
+    android:orientation="vertical">
+    <!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ididit"/>
+
+        <android.support.v7.widget.ButtonBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/camera"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_action_camera"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upload"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/camera"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+            </RelativeLayout>
+
+        </android.support.v7.widget.ButtonBarLayout>
+    </LinearLayout>
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/comment"
+            android:hint="輸入你的留言..."
+            android:gravity="top|left"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/send_comment"
+                android:text="@string/ok"/>
+            <!--
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/choose_pic"
+                            android:text="@string/choose_pic"/>
+
+                        <ImageView
+                            android:id="@+id/thumbnail"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp" />
+            -->
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/discuss_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="10.0sp"/>
+                <!--
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/discuss"/>
+
+                    <ListView
+                        android:id="@+id/discuss_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <RelativeLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/text"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="0.19"
+                            android:background="@color/white"
+                            android:gravity="left"
+                            android:inputType="textCapWords"
+                            android:textColor="#000"
+                            android:hint="留言..."
+                            android:textColorHint="@color/input_register_hint" />
+
+                        <Button
+                            android:id="@+id/insert"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dip"
+                            android:background="#ea4c88"
+                            android:text="@string/add"
+                            android:layout_below="@id/text"
+                            android:textColor="@color/white" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+                -->
+
+</LinearLayout>

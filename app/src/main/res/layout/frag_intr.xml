@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inttextt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".IntrFrag" >
+
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop"
+        app:layout_collapseMode="parallax"
+        app:srcCompat="@drawable/foods" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QQ美味咖哩飯QQ"
+                android:textSize="28dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/linearLayout"
+                android:layout_alignParentStart="true" />
+
+            <RelativeLayout
+                android:id="@+id/author_lay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title">
+
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="40dip"
+                    android:layout_height="40dip"
+                    app:srcCompat="@drawable/member"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/avatar"
+                    android:layout_alignTop="@+id/avatar"
+                    android:layout_marginStart="13dp"
+                    android:layout_toEndOf="@+id/avatar"
+                    android:gravity="center"
+                    android:text="~~我是小當家~~"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/avatar"
+                android:layout_alignStart="@+id/avatar"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/likepic"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    app:srcCompat="@drawable/whiteheart"/>
+
+                <TextView
+                    android:id="@+id/liken"
+                    android:layout_width="50dip"
+                    android:layout_height="31dp"
+                    android:gravity="center"
+                    android:text="6,120"
+                    android:textSize="18dp"
+                    android:layout_weight="0.05" />
+
+                <ImageView
+                    android:id="@+id/dispic"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    app:srcCompat="@drawable/ic_action_discuss" />
+
+                <TextView
+                    android:id="@+id/disn"
+                    android:layout_width="50dip"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="4,156"
+                    android:textSize="18dp" />
+                <!--
+                <ImageView
+                    android:id="@+id/sharepic"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    app:srcCompat="@drawable/ic_action_camera" />
+
+                <TextView
+                    android:id="@+id/sharen"
+                    android:layout_width="50dip"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="2,017"
+                    android:textSize="18dp" />
+                -->
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/introtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:text="簡單又美味的料理，快點一起來做吧~"
+                android:layout_below="@+id/linearLayout2"
+                android:layout_alignEnd="@+id/linearLayout2" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

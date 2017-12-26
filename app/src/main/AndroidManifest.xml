@@ -3,7 +3,9 @@
     package="com.project.cyim.masterchef">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -12,15 +14,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Begin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Login"/>
         <activity android:name=".Register"/>
+        <activity android:name=".UserMore"/>
+        <activity android:name=".Edituser"/>
+        <activity android:name=".Food"/>
+        <activity android:name=".ImageUpload"/>
+        <activity android:name=".FridgeInsert"/>
+        <activity android:name=".UploadRecipe"/>
+        <activity android:name=".MyFridgeSearch"/>
+        <activity android:name=".GetType"/>
+        <activity android:name=".PicSearchResult"/>
+        <activity android:name=".MemberPage"/>
+        <activity android:name=".WordOrVideo"/>
+        <activity android:name=".UploadActivity"/>
+        <activity android:name=".VideoViewActivity"/>
     </application>
 
 </manifest>
+
+
+

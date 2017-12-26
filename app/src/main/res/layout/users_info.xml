@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dip"
+        android:background="@color/white">
+
+        <!--  ListRow Left sied Thumbnail image -->
+        <LinearLayout
+            android:id="@+id/thumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="5dip"
+            android:padding="10dip">
+
+            <ImageView
+                android:id="@+id/list_image"
+                android:layout_width="150dip"
+                android:layout_height="150dip"
+                android:src="@drawable/foods" />
+
+        </LinearLayout>
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/thumbnail"
+            android:layout_toRightOf="@+id/thumbnail"
+            android:padding="10dip"
+            android:text="陳美美"
+            android:textColor="@color/bg_main"
+            android:textSize="20dip"
+            android:textStyle="bold"
+            android:typeface="sans" />
+
+        <!-- Author -->
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView"
+            android:layout_marginTop="1dip"
+            android:layout_toRightOf="@+id/thumbnail"
+            android:padding="5dip"
+            android:text="小美~美美的~"
+            android:textColor="@color/bg_main"
+            android:textSize="16dip" />
+
+
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/btn_login_bg"
+            android:padding="15dip"
+            android:text="@string/edit"
+            android:textColor="@color/bg_register"
+            android:textSize="13dip"
+            android:layout_marginStart="12dp"
+            android:layout_below="@+id/author"
+            android:layout_toEndOf="@+id/thumbnail"
+            android:layout_marginTop="13dp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            android:background="@color/white"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/tabs"/>
+    </LinearLayout>
+
+</LinearLayout>

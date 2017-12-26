@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_alignParentTop="true"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="305dip"
+    android:layout_marginTop="5dp">
+        <ImageView
+            android:id="@+id/thumb"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="0.19"
+            app:srcCompat="@drawable/choose" />
+
+        <TextView
+            android:id="@+id/stepno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="0.19"
+            android:text="步驟1"
+            android:textSize="24dp" />
+
+        <EditText
+            android:id="@+id/step_content"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="5dp"
+            android:hint="輸入步驟內容..."
+            android:textSize="24sp"
+            android:maxLines = "50"
+            android:scrollbars = "vertical"/>
+</LinearLayout>
